@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title= h(@page_title || 'Connecting Presidential Collections')
+    = favicon_link_tag asset_path('favicon.ico')
+    = stylesheet_link_tag 'application', media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag 'application', "data-turbolinks-track" => true 
+    = csrf_meta_tags
+    = raw render_head_content
+
+  %body{onload: onload_method, class: render_body_class.html_safe}
+    #page
+      #hd
+        #logo
+          %h1.site_title
+            = link_to 'Miller Center', '/'
+            = content_tag(:span, 'Search Results', id: :results_text) if (params[:controller] == 'catalog' and !params[:id])
+        #user_util_links= render '/user_util_links'
+
+      #bd
+        #main
+          #main_container
+            = render '/flash_msg'
+            = yield
+        #sidebar= sidebar_items.join.html_safe
+
+      #ft= raw @footer

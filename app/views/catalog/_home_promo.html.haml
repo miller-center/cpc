@@ -1,0 +1,43 @@
+%h2 Featured Items
+#featured
+	= link_to image_tag("featured/sixthFloor.jpg", :alt => "Sixth Floor Museum", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/sfm_3512"
+	= link_to image_tag("featured/roosevelt.jpg", :alt => "Roosevelt Center", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/trc_o36257"
+	= link_to image_tag("featured/ohp.jpg", :alt => "Miller Center Oral History Program", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/poh_86"
+	= link_to image_tag("featured/hayes.jpg", :alt => "Hayes", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/rbh_2000_7_2"
+
+
+%h2 Meet our Partners
+#featured
+	= link_to image_tag("logo-wilsonCtr.gif", :alt => "Wilson Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#wwp"
+	= link_to image_tag("logo-sixthFloor.gif", :alt => "Sixth Floor Museum", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#sfm"
+	= link_to image_tag("logo-rooseveltCtr.gif", :alt => "Roosevelt Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#trc"
+	= link_to image_tag("logo-massHist.gif", :alt => "Massachusetts Historical Society Adams Collection", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#mhs"
+	= link_to image_tag("logo-hayes.gif", :alt => "Hayes", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#hpc"
+	= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#ohp"
+	%span(class="more")
+		=link_to("Read more", "/partners")
+
+%h3
+	= link_to("Terms of Use", "/about#terms")
+%p
+	The partner organizations determine the rights for digital objects on this site. Please go to the partners’ websites for more information.
+	%span{:class => "more"}
+		= link_to("Read more", "about#terms")
+
+%h3
+	= link_to("Citation Styles", "/about#citationstyles")
+%p
+	We provide a selection of citation styles for use when referencing items from the collection.
+	%span(class="more")
+		=link_to("Read more", "about#citationstyles")
+
+%h3
+	= link_to("API", "/about#api")
+%p
+	Information in this database is free and open source. Use our API to refer to the data on your own site. (To come.)
+	
+%h3 Funded by the IMLS
+= link_to image_tag("imls-logo.png", :alt => "Institute of Museum and Library Services", :id => "imls-logo", :width => "165", :height => "75"), "http://www.imls.gov/"
+%p
+	The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. We provide leadership through research, policy development, and grant making.
+	= link_to("Read more", "http://www.imls.gov/")

@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore vendor/bundle (some like to build gems here)
+/vendor/bundle/**
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -18,3 +21,6 @@
 # ignore crufty temp files
 .DS_Store
 *.sw?
+
+# Ignore jetty and its contents
+jetty/**

@@ -33,7 +33,6 @@ group :doc do
 end
 
 gem 'blacklight', ">= 5.3.0"
-gem 'foundation-rails', "~> 5"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
