@@ -9,6 +9,9 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
+# Use Haml for markup
+gem 'haml'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -49,6 +52,7 @@ gem "jettywrapper", "~> 1.7"
 gem "devise"
 gem "devise-guests", "~> 0.3"
 gem "blacklight-marc", "~> 5.0"
+gem "blacklight_advanced_search"
 
 # Install gems from each plugin
 Dir.glob(File.join(File.dirname(__FILE__), 'data', '**', "Gemfile")) do |gemfile|
