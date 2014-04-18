@@ -47,6 +47,12 @@ gem 'blacklight', ">= 5.3.0"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :development do 
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
 
 gem "jettywrapper", "~> 1.7"
 gem "devise"
