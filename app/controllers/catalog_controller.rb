@@ -59,7 +59,11 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format', :label => 'Format'
     config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
+    config.add_facet_field 'subject_facet', :label => 'Subject Topic', :limit => 20 
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
+    config.add_facet_field 'publisher_facet', :label => 'Publisher', :limit => true
+    config.add_facet_field 'type_facet', :label => 'Type', :limit => true     
+    config.add_facet_field 'date_facet', :label => 'Date', :limit => true
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
     config.add_facet_field 'subject_geo_facet', :label => 'Region' 
     config.add_facet_field 'subject_era_facet', :label => 'Era'  
@@ -99,6 +103,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_display', :label => 'Author'
     config.add_show_field 'author_vern_display', :label => 'Author'
     config.add_show_field 'format', :label => 'Format'
+    config.add_show_field 'subject_t', :label => 'Subject'
+    config.add_show_field 'source', :label => 'Source'
+    config.add_show_field 'rights', :label => 'Rights'
     config.add_show_field 'url_fulltext_display', :label => 'URL'
     config.add_show_field 'url_suppl_display', :label => 'More Information'
     config.add_show_field 'language_facet', :label => 'Language'
