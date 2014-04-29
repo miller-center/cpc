@@ -18,4 +18,13 @@ namespace :import do
     end
   end
 
+  desc "purges all records from Solr"
+  task purge: :environment do
+    if Blacklight.solr.uri
+      puts "Deleting all records from #{Blacklight.solr.uri}"
+      Blacklight.solr.delete_by_query '*:*'
+      Blacklight.solr.commit
+    end
+  end
+
 end
