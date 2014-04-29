@@ -1,3 +1,18 @@
+//update variables here, e.g.
+//$navbar-default-bg: #A9DBEC;
+//$body-bg: #96C2D1;
+//$font-family-base: 'Transat';
+$logo_image: 'mc-logo.png' !default;
+
+
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
+// customize styling here
+#header-navbar {
+  .navbar-brand {  /* The main logo image for the Blacklight instance */
+  	width: 150px;
+    height: 80px;
+}
+  background-color: #345482;
+}

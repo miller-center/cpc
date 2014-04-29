@@ -3,6 +3,9 @@ CpcBlacklight::Application.routes.draw do
   blacklight_for :catalog
   Blacklight::Marc.add_routes(self)
   devise_for :users
+
+  get "/:page" => "static#show"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
