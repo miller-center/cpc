@@ -32,6 +32,7 @@ class OaiImporter < XmlImporter
       "dc:source" => :source,
       "dc:type" => :type,
       "dc:language" => :language,
+      "dc:relation" => :president_t,
       "dc:rights" => :rights
     }
 
