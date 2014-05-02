@@ -3,7 +3,7 @@
 //$body-bg: #96C2D1;
 //$font-family-base: 'Transat';
 $logo_image: 'mc-logo.png' !default;
-
+$mc-blue: #345482;
 
 @import 'bootstrap';
 
@@ -13,6 +13,11 @@ $logo_image: 'mc-logo.png' !default;
   .navbar-brand {  /* The main logo image for the Blacklight instance */
   	width: 150px;
     height: 80px;
+  }
+  background-color: $mc-blue;
 }
-  background-color: #345482;
+
+#footer {
+	background-color: $mc-blue;
+	color: white;
 }
