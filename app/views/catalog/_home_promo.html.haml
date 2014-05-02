@@ -1,43 +1,85 @@
-%h2 Featured Items
-#featured
-	= link_to image_tag("featured/sixthFloor.jpg", :alt => "Sixth Floor Museum", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/sfm_3512"
-	= link_to image_tag("featured/roosevelt.jpg", :alt => "Roosevelt Center", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/trc_o36257"
-	= link_to image_tag("featured/ohp.jpg", :alt => "Miller Center Oral History Program", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/poh_86"
-	= link_to image_tag("featured/hayes.jpg", :alt => "Hayes", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/rbh_2000_7_2"
+%aside(class="col-md-4" id="home-aside")
+
+	#secondary-message
+		%dl
+			%dt What is CPC?
+			%dd
+				%p CPC is an aggregator. That means it makes data from multiple sources searchable in one location. CPC is based at the U.Va. Miller Center and pulls information related to presidential collections from a number of partners across the U.S.
+
+			%dt Can I use this for my research?
+			%dd 
+				%p Yes! Click through to view some examples of correct citations.
+		
+			%dt I have a presidential collection. Can I add my content to your site? 
+			%dd
+				%p Yes! We accept content at various times throughout the year. Contact us so we can work out the details.
+
+		
+
+%h3(id="presidents") Browse by President
+.featured(class="col-md-8")
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/adams.jpg", :alt => "John Adams", :class => "featured-item img-responsive", :title => "John Adams"), "/?f%5Bpresident_facet%5D%5B%5D=Adams%2C+John%2C+1735-1826"
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/bush.jpg", :alt => "George H.W. Bush", :class => "featured-item img-responsive", :title => "George H.W. Bush"), ""
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/hayes.jpg", :alt => "Rutherford B. Hayes", :class => "featured-item img-responsive", :title => "Rutherford B. Hayes"), ""
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/kennedy.jpg", :alt => "John F. Kennedy", :class => "featured-item img-responsive", :title => "John F. Kennedy"), ""
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/roosevelt.jpg", :alt => "Theodore Roosevelt", :class => "featured-item img-responsive", :title => "Theodore Roosevelt"), ""
+	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("presidents/wilson.jpg", :alt => "Woodrow Wilson", :class => "featured-item img-responsive", :title => "Woodrow Wilson"), ""
+	%p More presidents coming soon!
 
 
-%h2 Meet our Partners
-#featured
-	= link_to image_tag("logo-wilsonCtr.gif", :alt => "Wilson Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#wwp"
-	= link_to image_tag("logo-sixthFloor.gif", :alt => "Sixth Floor Museum", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#sfm"
-	= link_to image_tag("logo-rooseveltCtr.gif", :alt => "Roosevelt Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#trc"
-	= link_to image_tag("logo-massHist.gif", :alt => "Massachusetts Historical Society Adams Collection", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#mhs"
-	= link_to image_tag("logo-hayes.gif", :alt => "Hayes", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#hpc"
-	= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item", :width => "120", :alt => ""), "/partners.html#ohp"
+//%h2 Featured Items
+//#featured
+//	= link_to image_tag("featured/sixthFloor.jpg", :alt => "Sixth Floor Museum", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/sfm_3512"
+//	= link_to image_tag("featured/roosevelt.jpg", :alt => "Roosevelt Center", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/trc_o36257"
+//	= link_to image_tag("featured/ohp.jpg", :alt => "Miller Center Oral History Program", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/poh_86"
+//	= link_to image_tag("featured/hayes.jpg", :alt => "Hayes", :class => "featured-item", :alt => ""), "http://presidentialcollections.org/catalog/rbh_2000_7_2"
+
+
+
+%h3(id="partners") Meet our Partners
+.featured(class="col-md-8")
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-wilsonCtr.gif", :alt => "Wilson Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#wwp"
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-sixthFloor.gif", :alt => "Sixth Floor Museum", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#sfm"
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-rooseveltCtr.gif", :alt => "Roosevelt Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#trc"
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-massHist.gif", :alt => "Massachusetts Historical Society Adams Collection", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#mhs"
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-hayes.gif", :alt => "Hayes Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#hpc"
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#ohp"
 	%span(class="more")
-		=link_to("Read more", "/partners")
+		=link_to("Read more →", "/partners")
 
-%h3
-	= link_to("Terms of Use", "/about#terms")
-%p
-	The partner organizations determine the rights for digital objects on this site. Please go to the partners’ websites for more information.
-	%span{:class => "more"}
-		= link_to("Read more", "about#terms")
+//%h3
+//	= link_to("Terms of Use", "/about#terms")
+//%p
+//	The partner organizations determine the rights for digital objects on this site. Please go to the partners’ websites for more information.
+//	%span{:class => "more"}
+//		= link_to("Read more", "about#terms")
 
-%h3
-	= link_to("Citation Styles", "/about#citationstyles")
-%p
-	We provide a selection of citation styles for use when referencing items from the collection.
-	%span(class="more")
-		=link_to("Read more", "about#citationstyles")
+//%h3
+//	= link_to("Citation Styles", "/about#citationstyles")
+//%p
+//	We provide a selection of citation styles for use when referencing items from the collection.
+//	%span(class="more")
+//		=link_to("Read more", "about#citationstyles")
 
-%h3
-	= link_to("API", "/about#api")
-%p
-	Information in this database is free and open source. Use our API to refer to the data on your own site. (To come.)
+//%h3
+//	= link_to("API", "/about#api")
+//%p
+//	Information in this database is free and open source. Use our API to refer to the data on your own site. (To come.)
 	
 %h3 Funded by the IMLS
 = link_to image_tag("imls-logo.png", :alt => "Institute of Museum and Library Services", :id => "imls-logo", :width => "165", :height => "75"), "http://www.imls.gov/"
 %p
 	The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. We provide leadership through research, policy development, and grant making.
-	= link_to("Read more", "http://www.imls.gov/")
+	= link_to("Read more →", "http://www.imls.gov/")

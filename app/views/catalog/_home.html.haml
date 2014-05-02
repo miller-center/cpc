@@ -1,9 +1,10 @@
 = render 'home_text'
-= render 'search_form'
+//= render 'search_form'
 = render 'home_promo'
 
-- if defined? sidebar_items
- - sidebar_items << capture do
-  = render 'facets'
-- else
- = render 'facets'
+
+//- if defined? sidebar_items
+// - sidebar_items << capture do
+//  = render 'facets'
+//- else
+// = render 'facets'

@@ -2,7 +2,7 @@
 //$navbar-default-bg: #A9DBEC;
 //$body-bg: #96C2D1;
 //$font-family-base: 'Transat';
-$logo_image: 'mc-logo.png' !default;
+$logo_image: 'cpc-logo.png' !default;
 
 
 @import 'bootstrap';
@@ -11,8 +11,29 @@ $logo_image: 'mc-logo.png' !default;
 // customize styling here
 #header-navbar {
   .navbar-brand {  /* The main logo image for the Blacklight instance */
-  	width: 150px;
-    height: 80px;
+    height: 160px;
+    width: 290px;
 }
   background-color: #345482;
 }
+
+/* Standard "more" styling */
+.more {	text-transform: uppercase; font-size: 80%;}
+
+
+/*The aside is created as an entity separate from the #secondary-message so we can have more than one block in the aside if we want to. The main-message might go there, for instance.*/
+
+aside#home-aside {float:right;}
+
+aside#home-aside #secondary-message {
+	margin: 25px 0 25px 10px; 
+	padding: 10px; 
+	background: #edf2f7;
+	-webkit-border-radius: $border-radius-large; 
+	-moz-border-radius: $border-radius-large;
+	border-radius: $border-radius-large}
+
+.featured .featured-president, .featured .featured-partner {padding: 5px;}
+
+h3#partners {clear:left;}
+
