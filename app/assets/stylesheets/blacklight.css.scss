@@ -3,6 +3,7 @@
 //$body-bg: #96C2D1;
 //$font-family-base: 'Transat';
 $logo_image: 'cpc-logo.png' !default;
+$mc-blue: #345482;
 
 
 @import 'bootstrap';
@@ -14,7 +15,7 @@ $logo_image: 'cpc-logo.png' !default;
     height: 160px;
     width: 290px;
 }
-  background-color: #345482;
+  background-color: $mc-blue;
 }
 
 /* Standard "more" styling */
@@ -37,3 +38,7 @@ aside#home-aside #secondary-message {
 
 h3#partners {clear:left;}
 
+#footer {
+	background-color: $mc-blue;
+	color: white;
+}
