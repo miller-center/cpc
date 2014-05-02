@@ -4,6 +4,7 @@ CpcBlacklight::Application.routes.draw do
   Blacklight::Marc.add_routes(self)
   devise_for :users
 
+  get "/advanced" => "advanced#index"
   get "/:page" => "static#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
