@@ -57,9 +57,7 @@ class CatalogController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
     config.add_facet_field 'format', :label => 'Format'
-    config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
-    config.add_facet_field 'subject_facet', :label => 'Subject Topic', :limit => 20 
     config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 20
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     config.add_facet_field 'publisher_facet', :label => 'Publisher', :limit => true
