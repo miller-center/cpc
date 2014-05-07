@@ -4,7 +4,7 @@
 //$font-family-base: 'Transat';
 $logo_image: 'cpc-logo.png' !default;
 $mc-blue: #345482;
-
+$footer-height: 65px;
 
 @import 'bootstrap';
 
@@ -37,6 +37,10 @@ aside#home-aside #secondary-message {
 .featured .featured-president, .featured .featured-partner {padding: 5px;}
 
 h3#partners {clear:left;}
+
+#funding {
+	padding-bottom: $footer-height;
+}
 
 #footer {
 	background-color: $mc-blue;
