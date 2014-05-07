@@ -4,7 +4,7 @@
 //$font-family-base: 'Transat';
 $logo_image: 'cpc-logo.png' !default;
 $mc-blue: #345482;
-$footer-height: 65px;
+$footer-height: 4em;
 
 @import 'bootstrap';
 
@@ -45,4 +45,19 @@ h3#partners {clear:left;}
 #footer {
 	background-color: $mc-blue;
 	color: white;
+}
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -$footer-height; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: $footer-height; /* .push must be the same height as .footer */
 }
