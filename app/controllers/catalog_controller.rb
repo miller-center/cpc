@@ -60,8 +60,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 20
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
-    config.add_facet_field 'publisher_facet', :label => 'Publisher', :limit => true
-    config.add_facet_field 'type_facet', :label => 'Type', :limit => true     
+    config.add_facet_field 'publisher_facet', :label => 'Partner', :limit => true
     config.add_facet_field 'date_facet', :label => 'Date', :limit => true
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
     config.add_facet_field 'subject_geo_facet', :label => 'Region' 
@@ -70,9 +69,9 @@ class CatalogController < ApplicationController
     config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']
 
     config.add_facet_field 'example_query_facet_field', :label => 'Publish Date', :query => {
-       :years_5 => { :label => 'within 5 Years', :fq => "pub_date:[#{Time.now.year - 5 } TO *]" },
-       :years_10 => { :label => 'within 10 Years', :fq => "pub_date:[#{Time.now.year - 10 } TO *]" },
-       :years_25 => { :label => 'within 25 Years', :fq => "pub_date:[#{Time.now.year - 25 } TO *]" }
+       :century_20 => { :label => '1900 - present', :fq => "pub_date:[1900 TO *]" },
+       :century_19 => { :label => 'within 10 Years', :fq => "pub_date:[1800 TO 1899]" },
+       :century_18 => { :label => 'within 25 Years', :fq => "pub_date:[* TO 1799]" }
     }
 
 
@@ -103,18 +102,19 @@ class CatalogController < ApplicationController
     config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
     config.add_show_field 'author_display', :label => 'Author'
     config.add_show_field 'author_vern_display', :label => 'Author'
-    config.add_show_field 'format', :label => 'Format'
-    config.add_show_field 'subject_t', :label => 'Subject'
     config.add_show_field 'description', :label => 'Description'
-    config.add_show_field 'source', :label => 'Source'
-    config.add_show_field 'rights', :label => 'Rights'
+    config.add_show_field 'subject_t', :label => 'Subject'
+    config.add_show_field 'format', :label => 'Format'
     config.add_show_field 'url_fulltext_display', :label => 'URL'
     config.add_show_field 'url_suppl_display', :label => 'More Information'
     config.add_show_field 'language_facet', :label => 'Language'
-    config.add_show_field 'published_display', :label => 'Published'
+    config.add_show_field 'publisher', :label => 'Partner'
+    config.add_show_field 'isPartOf', :label => 'Part of'
     config.add_show_field 'published_vern_display', :label => 'Published'
     config.add_show_field 'lc_callnum_display', :label => 'Call number'
     config.add_show_field 'isbn_t', :label => 'ISBN'
+    config.add_show_field 'rights', :label => 'Rights'
+    config.add_show_field 'source', :label => 'Source'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

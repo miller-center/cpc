@@ -664,11 +664,13 @@
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
+   <copyField source="publisher" dest="published_display"/>
    <!-- Copy Fields -->
         
    <!-- facet fields -->
    <copyField source="formats" dest="format_facet"/>
    <copyField source="type" dest="type_facet"/>
+   <copyField source="date" dest="pub_date"/>
    <copyField source="pub_date" dest="date_facet"/>
    <copyField source="publisher" dest="publisher_facet"/>
    <copyField source="president_t" dest="president_facet"/>
