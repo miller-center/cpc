@@ -262,7 +262,7 @@ module Blacklight::BlacklightHelperBehavior
     document = args.shift || options[:document]
 
     field = args.shift || options[:field]
-    presenter(document).render_document_show_field_value field, options
+    truncate presenter(document).render_document_show_field_value(field, options), length: 300
   end
 
   ##
