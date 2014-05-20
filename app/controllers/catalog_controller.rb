@@ -70,8 +70,8 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'example_query_facet_field', :label => 'Publish Date', :query => {
        :century_20 => { :label => '1900 - present', :fq => "pub_date:[1900 TO *]" },
-       :century_19 => { :label => 'within 10 Years', :fq => "pub_date:[1800 TO 1899]" },
-       :century_18 => { :label => 'within 25 Years', :fq => "pub_date:[* TO 1799]" }
+       :century_19 => { :label => '1800 - 1899', :fq => "pub_date:[1800 TO 1899]" },
+       :century_18 => { :label => 'prior to 1800', :fq => "pub_date:[* TO 1799]" }
     }
 
 
