@@ -60,4 +60,5 @@ html, body {
 }
 .footer, .push {
 	height: $footer-height; /* .push must be the same height as .footer */
+	text-align:center;
 }
