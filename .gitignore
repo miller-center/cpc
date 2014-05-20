@@ -10,6 +10,9 @@
 # Ignore vendor/bundle (some like to build gems here)
 /vendor/bundle/**
 
+# Ignore complied assets
+/public/assets/** 
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
