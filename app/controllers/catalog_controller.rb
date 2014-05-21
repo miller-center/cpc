@@ -28,6 +28,17 @@ class CatalogController < ApplicationController
     #  # :rows => 1
     #  # :q => '{!raw f=id v=$id}' 
     #}
+    config.default_document_solr_params = {
+        :qt => 'document',
+        :fl => '*',
+        :rows => 1,
+        :mlt => true,
+        :"mlt.fl" => 'title_t,description,author_t',
+        :"mlt.mindt" => 1,
+        :"mlt.mintf" => 1,
+        :"mlt.maxqt" => 3,
+        :q => '{!raw f=id v=$id}' 
+    }
 
     # solr field configuration for search results/index views
     config.index.title_field = 'title_display'
