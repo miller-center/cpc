@@ -2,17 +2,23 @@
 
 	#secondary-message
 		%dl
-			%dt What is CPC?
+			%dt <a href="/about#what-is">What is CPC?</a>
 			%dd
-				%p CPC is an aggregator. That means it makes data from multiple sources searchable in one location. CPC is based at the U.Va. Miller Center and pulls information related to presidential collections from a number of partners across the U.S.
-
-			%dt Can I use this for my research?
+				%p Connecting Presidential Collections is a website that collaborates with partners to create a place for users to search across presidential collections. 
+			%dt <a href="/about#become-partner">Can my organization submit a collection and become a partner?</a>
 			%dd 
-				%p Yes! Click through to view some examples of correct citations.
-		
-			%dt I have a presidential collection. Can I add my content to your site? 
-			%dd
-				%p Yes! We accept content at various times throughout the year. Contact us so we can work out the details.
+				%p Yes! If you work with an organization that has a collection related to the presidency, contact us! <a class="more" href="/about#what-is">Read more →</a>
+
+			%dt <a href="/about">How can I learn more?</a>
+			%dd 
+				%p We have lots of ways for you to be involved and informed! You can: 
+				%ul
+					%li Follow us on Twitter <a href="https://twitter.com/pres_collection" target="_blank">@pres_collection</a>,
+					%li <a href="http://presidentialcollections.wordpress.com/">Check out our blog</a>, 
+					%li <a href="https://docs.google.com/forms/d/1xVMbBZUJd46MWKB0rION7zc8zhaTaKK3gSIhGLy-REw/viewform" target="_blank">Join our email list</a>,
+					%li <a href="https://github.com/miller-center">Access our code through GitHub</a>
+
+
 
 		
 
@@ -78,9 +84,7 @@
 //%p
 //	Information in this database is free and open source. Use our API to refer to the data on your own site. (To come.)
 	
-%h3(id="partners") Meet our Partners
+%h3(id="partners") Funded by the IMLS
 .featured#funding(class="col-md-8")
-	%h3 Funded by the IMLS
-	= link_to image_tag("imls-logo.png", :alt => "Institute of Museum and Library Services", :id => "imls-logo", :width => "165", :height => "75"), "http://www.imls.gov/"
-	%p The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. We provide leadership through research, policy development, and grant making.
-	= link_to("Read more →", "http://www.imls.gov/")
+	= link_to image_tag("imls-logo.png", :alt => "Institute of Museum and Library Services", :id => "imls-logo", :width => "165", :height => "75", :class => "partner-logo"), "http://www.imls.gov/"
+	%p The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. The IMLS provides leadership through research, policy development, and grant making. <a class="more" href="http://imls.gov" target="_blank">read more →</a>
