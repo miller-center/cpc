@@ -1,7 +1,7 @@
 <div class="navbar-right">
   <ul class="nav navbar-nav">
     <li>
-      <a href="presidentialcollections.wordpress.com">Blog</a>
+      <a href="http://presidentialcollections.wordpress.com">Blog</a>
     </li>
     <li>
       <a href="/about">About CPC</a>
@@ -9,10 +9,11 @@
     <li>
       <a href="/partners">Partners</a>
     </li>
-  </ul>  
-
-
-  <ul class="nav navbar-nav">
+    <% if render_bookmarks_control? %>
+    <li>
+      <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
+    </li>
+    <% end %>
     <% if has_user_authentication_provider? and current_user %>
       <li>
       <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
@@ -21,10 +22,10 @@
     <li>
     <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
     </li>
-  </ul>
+  </ul>  
 
   <% if has_user_authentication_provider? %>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav topbarlogo">
       <% if current_user %>
       <li>
         <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
