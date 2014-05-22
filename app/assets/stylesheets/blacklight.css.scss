@@ -62,3 +62,8 @@ html, body {
 	height: $footer-height; /* .push must be the same height as .footer */
 	text-align:center;
 }
+.bookmark_show {
+	float:right;
+	width:12%;
+	padding-left: 0.5em;
+}
