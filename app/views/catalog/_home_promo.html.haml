@@ -27,16 +27,16 @@
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("presidents/adams.jpg", :alt => "John Adams", :class => "featured-item img-responsive", :title => "John Adams"), "/?f%5Bpresident_facet%5D%5B%5D=Adams%2C+John%2C+1735-1826"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/bush.jpg", :alt => "George H.W. Bush", :class => "featured-item img-responsive", :title => "George H.W. Bush"), ""
+		= link_to image_tag("presidents/bush.jpg", :alt => "George H.W. Bush", :class => "featured-item img-responsive", :title => "George H.W. Bush"), "/?f%5Bpresident_facet%5D%5B%5D=Bush%2C+George%2C+1924-"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/hayes.jpg", :alt => "Rutherford B. Hayes", :class => "featured-item img-responsive", :title => "Rutherford B. Hayes"), ""
+		= link_to image_tag("presidents/hayes.jpg", :alt => "Rutherford B. Hayes", :class => "featured-item img-responsive", :title => "Rutherford B. Hayes"), "/?f%5Bpresident_facet%5D%5B%5D=Hayes%2C+Rutherford+B.%2C+1822-1893"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/kennedy.jpg", :alt => "John F. Kennedy", :class => "featured-item img-responsive", :title => "John F. Kennedy"), ""
+		= link_to image_tag("presidents/kennedy.jpg", :alt => "John F. Kennedy", :class => "featured-item img-responsive", :title => "John F. Kennedy"), "/?f%5Bpresident_facet%5D%5B%5D=Kennedy%2C+John+F.+%28John+Fitzgerald%29%2C+1917-1963"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/roosevelt.jpg", :alt => "Theodore Roosevelt", :class => "featured-item img-responsive", :title => "Theodore Roosevelt"), ""
+		= link_to image_tag("presidents/roosevelt.jpg", :alt => "Theodore Roosevelt", :class => "featured-item img-responsive", :title => "Theodore Roosevelt"), "/?f%5Bpresident_facet%5D%5B%5D=Roosevelt%2C+Theodore%2C+1858-1919"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/wilson.jpg", :alt => "Woodrow Wilson", :class => "featured-item img-responsive", :title => "Woodrow Wilson"), ""
-	%p More presidents coming soon!
+		= link_to image_tag("presidents/wilson.jpg", :alt => "Woodrow Wilson", :class => "featured-item img-responsive", :title => "Woodrow Wilson"), "/?f%5Bpresident_facet%5D%5B%5D=Wilson%2C+Woodrow%2C+1856-1924"
+	%p.featured-note <em>More presidents coming soon!</em>
 
 
 //%h2 Featured Items
@@ -62,8 +62,8 @@
 		= link_to image_tag("logo-hayes.gif", :alt => "Hayes Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#hpc"
 	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#ohp"
-	%span(class="more")
-		=link_to("Read more →", "/partners")
+	%p <a class="more featured-note" href="/partners">more about our partners →</a></p>
+
 
 //%h3
 //	= link_to("Terms of Use", "/about#terms")
@@ -87,4 +87,5 @@
 %h3(id="partners") Funded by the IMLS
 .featured#funding(class="col-md-8")
 	= link_to image_tag("imls-logo.png", :alt => "Institute of Museum and Library Services", :id => "imls-logo", :width => "165", :height => "75", :class => "partner-logo"), "http://www.imls.gov/"
-	%p The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. The IMLS provides leadership through research, policy development, and grant making. <a class="more" href="http://imls.gov" target="_blank">read more →</a>
+	%p The UVA Miller Center thanks IMLS for its generous support of Connecting Presidential Collections. The mission of IMLS is to inspire libraries and museums to advance innovation, lifelong learning, and cultural and civic engagement. The IMLS provides leadership through research, policy development, and grant making. 
+	%p <a class="more featured-note" href="http://imls.gov" target="_blank">more about the imls →</a>

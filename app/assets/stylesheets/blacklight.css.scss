@@ -36,7 +36,7 @@ aside#home-aside #secondary-message {
 
 .featured .featured-president, .featured .featured-partner {padding: 5px;}
 
-h3#partners {clear:left;}
+h3#partners {clear:left; margin-top: 25px;}
 
 #funding {
 	padding-bottom: $footer-height;
@@ -70,3 +70,8 @@ html, body {
 
 .question {margin-top: 25px;}
 .partner-logo {float:right; text-align: center;}
+.featured-note {float: right;}
+
+#footer {color: #eee;}
+#footer a {color: #bbb;}
+#footer-highlight, #footer-highlight a {color: #c96f27; font-weight: bold;}
