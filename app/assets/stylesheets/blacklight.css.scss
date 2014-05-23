@@ -43,6 +43,7 @@ $footer-height: 4em;
 #header-navbar {
   @media screen and (max-width:767px) {
     height: 5em;
+    border-bottom-width: 0px;
   }
   @media screen and (min-width:768px) {
     height: 15em;
@@ -53,11 +54,20 @@ $footer-height: 4em;
       height: 4em;
         }
     }
+    .form-control { height: 2.8em;}
+	.input-group-btn > button { height: 2.8em;}
 }
 
 .cpc-search-sm {
 	@media screen and (max-width: 767px) {
 		display: block;
+		background-color: $mc-blue;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		border:none;
+		div.container > div.navbar-header > form > div.input-group { padding-left:1em;}
+        .form-control { height: 2.8em;}
+        .input-group-btn > button { height: 2.8em;}
     }
 	@media screen and (min-width: 768px) {
 		display: none;
