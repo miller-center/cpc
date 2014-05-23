@@ -1,15 +1,7 @@
-<div class="navbar-right">
-  <ul class="nav navbar-nav">
-    <li>
-      <a href="http://presidentialcollections.wordpress.com">Blog</a>
-    </li>
-    <li>
-      <a href="/about">About CPC</a>
-    </li>
-    <li>
-      <a href="/partners">Partners</a>
-    </li>
-    <% if render_bookmarks_control? %>
+<div class="navbar-right topbarlogo">
+  <% if has_user_authentication_provider? %>
+    <ul class="nav navbar-nav">
+          <% if render_bookmarks_control? %>
     <li>
       <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
     </li>
@@ -22,10 +14,6 @@
     <li>
     <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
     </li>
-  </ul>  
-
-  <% if has_user_authentication_provider? %>
-    <ul class="nav navbar-nav topbarlogo">
       <% if current_user %>
       <li>
         <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
@@ -42,4 +30,20 @@
       <% end %>
       </ul>
   <% end %>
+</div>
+<div class="navbar-right topbarlogo">
+  <ul class="nav navbar-nav">
+    <li>
+      <a href="http://presidentialcollections.wordpress.com">Blog</a>
+    </li>
+    <li>
+      <a href="/about">About CPC</a>
+    </li>
+    <li>
+      <a href="/partners">Partners</a>
+    </li>
+  </ul>
+</div>
+<div class="navbar-header pull-right navbar-search-form" style="border:none;">
+    <%= render :partial => 'catalog/navbar_search_form' %>
 </div>
