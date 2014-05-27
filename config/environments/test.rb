@@ -33,4 +33,7 @@ CpcBlacklight::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # In test we can leave this as a dummy ID
+  config.google_analytics_id = "UA-XXXXXXX-XX"
 end

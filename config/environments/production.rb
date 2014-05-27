@@ -77,4 +77,7 @@ CpcBlacklight::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Change this to your Google Analytics site ID
+  config.google_analytics_id = "UA-XXXXXXX-XX"
 end
