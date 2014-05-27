@@ -8,6 +8,9 @@ $logo_image-md: 'cpc-logo-md.png';
 $logo_image-sm: 'cpc-logo-sm.png';
 $mc-blue: #345482;
 $footer-height: 4em;
+$header-navbar-height-lg: 10em;
+$header-navbar-height-sm: 5em;
+$navbar-brand-scale-lg: 80.00%;
 
 @import 'bootstrap';
 
@@ -20,10 +23,11 @@ $footer-height: 4em;
 }
 #header-navbar {
   .navbar-brand {  /* The main logo image for the Blacklight instance */
-    height: 160px;
+    height: $header-navbar-height-lg;
     width: 290px;
     position:absolute;
     background:transparent image_url($logo_image) no-repeat top left;
+    background-size: $navbar-brand-scale-lg;
     display: inline-block;
     text-indent: 100%;
     white-space: nowrap;
@@ -42,11 +46,11 @@ $footer-height: 4em;
 // @media(min-width:1200px){}
 #header-navbar {
   @media screen and (max-width:767px) {
-    height: 5em;
+    height: $header-navbar-height-sm;
     border-bottom-width: 0px;
   }
   @media screen and (min-width:768px) {
-    height: 15em;
+    height: $header-navbar-height-lg;
   }
   .navbar-brand {
     @media screen and (max-width:767px) {
