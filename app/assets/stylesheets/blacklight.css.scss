@@ -55,6 +55,7 @@ $navbar-brand-scale-lg: 80.00%;
   .navbar-brand {
     @media screen and (max-width:767px) {
       background:transparent image_url($logo_image-sm) no-repeat top left;
+      background-size: 4.0em;
       height: 4em;
         }
     }
