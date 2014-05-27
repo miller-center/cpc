@@ -100,6 +100,14 @@ $navbar-brand-scale-lg: 80.00%;
   background-color: rgb(192,192,192);
 }
 
+/* Advanced Search Pages */
+ul.blacklight-advanced-facet-select {
+  li {
+    span.facet-checkbox  { float:left; }
+    span.label-and-count { padding-left: 1em; }
+  }
+}
+
 /* Standard "more" styling */
 .more {	text-transform: uppercase; font-size: 80%;}
 
