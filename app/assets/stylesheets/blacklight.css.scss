@@ -134,6 +134,9 @@ h3#partners {clear:left; margin-top: 25px;}
 #footer {
 	background-color: $mc-blue;
 	color: white;
+  * {
+    background-color: $mc-blue;
+  }
 }
 * {
 	margin: 0;
