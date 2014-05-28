@@ -561,7 +561,7 @@ module Blacklight::BlacklightHelperBehavior
   ##
   # Determine whether to render the bookmarks control 
   def render_bookmarks_control?
-    has_user_authentication_provider? and current_or_guest_user.present?
+    has_user_authentication_provider? and current_or_guest_user.present? and Rails.application.config.enable_bookmarks
   end
 
   ##
