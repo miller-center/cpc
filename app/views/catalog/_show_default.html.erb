@@ -3,7 +3,7 @@
   <% document_show_fields.each do |solr_fname, field| -%>
     <% if document.has? solr_fname %>
     <% if solr_fname == 'title_display' %>
-    	<h2 class="show-title-display"><%= render_document_show_field_value :document => document, :field => solr_fname %></h2>
+    	<h1 class="show-title-display"><%= render_document_show_field_value :document => document, :field => solr_fname %></h1>
     <% else -%>
     	<dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_document_show_field_label :field => solr_fname %></dt>
 	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= link_to_if(solr_fname.parameterize == "source", (render_document_show_field_value :document => document, :field => solr_fname), (render_document_show_field_value :document => document, :field => solr_fname), {:target => "_blank"}) %></dd>

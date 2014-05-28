@@ -165,3 +165,6 @@ html, body {
 #footer {color: #eee;}
 #footer a {color: #bbb;}
 #footer-highlight, #footer-highlight a {color: #c96f27; font-weight: bold;}
+
+/*This is so we can have show titles as h1s but without being quite so large.*/
+h1.show-title-display {font-size: 30px;}
