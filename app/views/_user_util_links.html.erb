@@ -1,11 +1,11 @@
 <div class="navbar-right topbarlogo">
   <% if has_user_authentication_provider? %>
     <ul class="nav navbar-nav">
-          <% if render_bookmarks_control? %>
+<!--           <% if render_bookmarks_control? %>
     <li>
       <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
     </li>
-    <% end %>
+    <% end %> -->
     <% if has_user_authentication_provider? and current_user %>
       <li>
       <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
@@ -44,6 +44,6 @@
     </li>
   </ul>
 </div>
-<div class="navbar-header pull-right navbar-search-form" style="border:none;">
+<div class="navbar-header pull-right navbar-search-form col-xs-4 col-sm-8 col-md-8 col-lg-8" style="border:none;">
     <%= render :partial => 'catalog/navbar_search_form' %>
 </div>
