@@ -2,8 +2,8 @@
 #
 class CatalogController < ApplicationController  
   include Blacklight::Marc::Catalog
-
   include Blacklight::Catalog
+  include BlacklightAdvancedSearch::ParseBasicQ
 
   configure_blacklight do |config|
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
@@ -198,6 +198,17 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you 
     # mean") suggestion is offered.
     config.spell_max = 5
+
+    # Advanced Search configuration
+    config.advanced_search = {
+      :form_solr_parameters => {
+        'facet.field' => ['subject_topic_facet', 'president_facet', 'publisher_facet'],
+        'facet.limit' => 25, # return all facet values
+        'facet.sort' => 'count', # sort by byte order of values
+      },
+      :url_key => 'advanced',
+      :qt => 'search'
+    }
   end
 
 end 
