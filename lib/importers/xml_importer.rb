@@ -45,7 +45,9 @@ class XmlImporter
     @solr = RSolr.connect :url => @solr_config["url"]
   end
 
-  def import(file)
+  def import(file, options = {})
+    dry_run = options[:dry_run] || false
+
     f = File.open(file)
     doc = Nokogiri::XML(f)
     f.close
@@ -54,15 +56,21 @@ class XmlImporter
     puts "Importing #{records.length} records from #{file}"
     pbar = ProgressBar.new("importing", records.length)
     records.each do |record|
-      import_record_node(record)
+      if ! dry_run
+        import_record_node(record, options)
+      else
+        display_record_node(record, options)
+      end
       pbar.inc
     end
 
-    begin
-      @solr.commit
-      @solr.optimize
-    rescue StandardError => err
-      STDERR.puts "Error importing from #{file}: #{err}"
+    unless dry_run
+      begin
+        @solr.commit
+        @solr.optimize
+      rescue StandardError => err
+        STDERR.puts "Error importing from #{file}: #{err}"
+      end
     end
 
     pbar.finish
@@ -112,8 +120,9 @@ class XmlImporter
 
   private
 
-  def import_record_node(record)  
+  def build_solr_add_doc(record, options={})
     solrdoc = {}
+    as_xml = true if options[:xml]
 
     @mappings.each do |xpath, docfield|
       record.xpath(mappings_prefix+xpath, namespaces).each do |node|
@@ -137,7 +146,24 @@ class XmlImporter
       else
         solrdoc[docfield] = field_val
       end
-    end
+    end 
+    solrdoc   
+  end
+
+  def display_record_node(record, options={})
+    solrdoc = build_solr_add_doc(record, options)  
+    raise RuntimeError unless solrdoc.kind_of? Hash
+
+    if solrdoc.empty?
+      STDERR.puts "Skipping empty record"
+    else
+      STDOUT.puts solrdoc
+    end    
+  end
+
+  def import_record_node(record, options={})
+    solrdoc = build_solr_add_doc(record, options)  
+    raise RuntimeError unless solrdoc.kind_of? Hash
 
     if solrdoc.empty?
       STDERR.puts "Skipping empty record"
