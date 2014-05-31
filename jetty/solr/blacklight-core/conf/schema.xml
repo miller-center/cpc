@@ -590,6 +590,7 @@
    <field name="subject_era_facet" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="subject_geo_facet" type="string" indexed="true" stored="true" multiValued="true" />
    <!-- pub_date is used for facet and display so it must be indexed and stored -->
+   <!-- pub_date should be indexed in addition to date, not copied from date    -->
    <field name="pub_date" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- pub_date sort uses new trie-based int fields, which are recommended for any int and are displayable, sortable, and range-quer
    we use 'tint' for faster range-queries. -->
@@ -670,7 +671,6 @@
    <!-- facet fields -->
    <copyField source="formats" dest="format_facet"/>
    <copyField source="type" dest="type_facet"/>
-   <copyField source="date" dest="pub_date"/>
    <copyField source="pub_date" dest="date_facet"/>
    <copyField source="publisher" dest="publisher_facet"/>
    <copyField source="president_t" dest="president_facet"/>
@@ -690,10 +690,14 @@
    <copyField source="subject_topic_facet" dest="subject_topic_unstem_search"/>
    
    <!-- sort fields -->
-   <copyField source="pub_date" dest="pub_date_sort"/>
+   <copyField source="date" dest="date_sort"/>
+<!--   <copyField source="pub_date" dest="pub_date_sort"/> -->
+   <copyField source="title_t" dest="title_sort"/>
+   <copyField source="author_t" dest="author_sort"/>
    
    <!-- display fields -->
    <copyField source="title_t" dest="title_display"/>
+   <copyField source="author_t" dest="author_display"/>
         
    <!-- spellcheck fields -->
    <!-- default spell check;  should match fields for default request handler -->

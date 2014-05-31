@@ -72,7 +72,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 20
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     config.add_facet_field 'publisher_facet', :label => 'Partner', :limit => true
-    config.add_facet_field 'date_facet', :label => 'Date', :limit => true
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
     config.add_facet_field 'subject_geo_facet', :label => 'Region' 
     config.add_facet_field 'subject_era_facet', :label => 'Era'  
@@ -96,6 +95,8 @@ class CatalogController < ApplicationController
     # config.add_index_field 'title_display', :label => 'Title'
     # config.add_index_field 'title_vern_display', :label => 'Title'
     config.add_index_field 'description', :label => 'Description'
+    #config.add_index_field 'date', :label => 'Date'
+    config.add_index_field 'pub_date', :label => 'Date'
     config.add_index_field 'published_display', :label => 'Partner'
     config.add_index_field 'author_display', :label => 'Author'
     config.add_index_field 'author_vern_display', :label => 'Author'
@@ -190,8 +191,9 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', :label => 'relevance'
-    config.add_sort_field 'pub_date_sort desc, title_sort asc', :label => 'year'
+    config.add_sort_field 'score desc, title_sort asc', :label => 'relevance'
+    config.add_sort_field 'date_sort desc, title_sort asc', :label => 'year (newest first)'
+    config.add_sort_field 'date_sort asc, title_sort asc', :label => 'year (oldest first)'
     config.add_sort_field 'author_sort asc, title_sort asc', :label => 'author'
     config.add_sort_field 'title_sort asc, pub_date_sort desc', :label => 'title'
 
