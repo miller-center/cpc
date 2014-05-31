@@ -13,6 +13,7 @@ namespace :import do
     options = {}
     options[:dry_run] = true if args[:arg1] =~ /dry/
     options[:xml] = true if args[:arg2] =~ /xml/
+    options[:debug] = true if args[:arg2] =~ /debug/
 
     importer = OaiImporter.new
 

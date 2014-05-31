@@ -47,6 +47,7 @@ class XmlImporter
 
   def import(file, options = {})
     dry_run = options[:dry_run] || false
+    @debug = true if options[:debug]
 
     f = File.open(file)
     doc = Nokogiri::XML(f)
@@ -54,14 +55,14 @@ class XmlImporter
 
     records = doc.xpath(record_delimiter, namespaces)
     puts "Importing #{records.length} records from #{file}"
-    pbar = ProgressBar.new("importing", records.length)
+    pbar = ProgressBar.new("importing", records.length) unless options[:dry_run]
     records.each do |record|
       if ! dry_run
         import_record_node(record, options)
       else
         display_record_node(record, options)
       end
-      pbar.inc
+      pbar.inc unless options[:dry_run]
     end
 
     unless dry_run
@@ -73,7 +74,7 @@ class XmlImporter
       end
     end
 
-    pbar.finish
+    pbar.finish unless options[:dry_run]
   end
 
   # a default filter that strips whitespace from all values
@@ -128,6 +129,64 @@ class XmlImporter
       record.xpath(mappings_prefix+xpath, namespaces).each do |node|
         field_val = node.text
 
+        # try to make ISO8601-compatible dates
+        if docfield == :date && field_val =~ /\d{4}-\d{4}/ # e.g. 1756-1804
+          begin
+            puts "Case 0 #{field_val}" if @debug
+            regex = Regexp.new(/\d{4}/) 
+            result = regex.match(field_val)
+            field_val = result[0] # index first date only
+            if field_val =~ /^\d{4}$/
+              field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+            end
+          rescue
+            field_val = node.text
+          end
+        elsif docfield == :date && field_val =~ /century/
+          begin
+            puts "Case 1 #{field_val}" if @debug
+            regex = Regexp.new(/\d{2}/)
+            result = regex.match(field_val)
+            field_val = result[0].to_i.-(1).to_s + "50" # 18 becomes 1750, midpoint of 18th C.
+            field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+          rescue
+            field_val = node.text
+          end
+        elsif docfield == :date && field_val.to_i > 0
+          begin
+            puts "Case 2 #{field_val}" if @debug
+            if field_val.to_datetime # will raise exception unless true
+              field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+            end
+          rescue
+            field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+          end
+        elsif docfield == :date && field_val =~ /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i && field_val.to_datetime.year > 0
+          begin
+            puts "Case 3 #{field_val}" if @debug
+            if field_val.to_datetime.year > 1492 # avoid insane values
+              field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+            else
+              field_val = node.text
+              docfield  = :pub_date
+            end
+          rescue
+            field_val = node.text
+          end
+        elsif docfield == :date && field_val =~ /circa/i
+          begin
+            puts "Case 4 #{field_val}" if @debug
+            field_val = Date.new(field_val.gsub(/circa/i, '').strip.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+          rescue
+            field_val = node.text
+          end
+        else
+          if docfield == :date
+            puts "Case 5 #{field_val} new docfield = :pub_date" if @debug
+            docfield = :pub_date # Solr typed as string, will handle strings that fail ISO 8601 validation 
+          end
+        end
+
         if solrdoc[docfield]
           if solrdoc[docfield].is_a?(Array)
             solrdoc[docfield] << field_val
@@ -136,6 +195,12 @@ class XmlImporter
           end
         else
           solrdoc[docfield] = field_val
+        end
+
+        # copy unformatted date data to additional field
+        if docfield == :date && node.text
+          solrdoc[:pub_date] ||= []
+          solrdoc[:pub_date] << node.text
         end
       end
 
@@ -157,7 +222,7 @@ class XmlImporter
     if solrdoc.empty?
       STDERR.puts "Skipping empty record"
     else
-      STDOUT.puts solrdoc
+      STDOUT.puts solrdoc.inspect
     end    
   end
 
