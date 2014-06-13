@@ -29,4 +29,7 @@ CpcBlacklight::Application.configure do
 
   # Change this to your Google Analytics site ID in production
   config.google_analytics_id = "UA-XXXXXXX-XX"
+
+  # log full responses from Solr index (at log level 'debug', which is on in development)
+  # ::BLACKLIGHT_VERBOSE_LOGGING=true
 end

@@ -1,0 +1,25 @@
+#content
+  .panel.sr-only
+    %h3= t('exception.show.internal_server_error.description')
+    %p Please return to our home page.  If this error persists, please send us an e-mail at presidentialcollections@virginia.edu
+  .panel.panel-default.text-center.col-md-12
+    %h1= t('exception.show.internal_server_error.title')
+  .panel.panel-default.col-md-12
+    %h3.panel-body= t('exception.show.internal_server_error.description')
+  
+  .panel.panel-default.col-md-12
+    %p.panel-body
+      Please
+      %a{:href => "/"}
+        return to our home page.
+      If this error persists, please send us an email at
+      = mail_to 'presidentialcollections@virginia.edu', name = 'presidentialcollections@virginia.edu', html_options = {subject: "Problem With CPC Site", body: "I encountered an error trying to get to #{request.original_url} at #{l Time.now, format: :short}"}
+  .panel.panel-default.apology.col-md-12.hidden-xs
+
+    %p.panel-body.text-center
+      = image_tag "apology_bot.png", :class => 'portrait'
+    %p.panel-body.text-right
+      %small
+        Apology Bot by 
+        %a{:href => "http://bokaier.deviantart.com/art/Apology-Bot-430411605"}
+          BoKaier

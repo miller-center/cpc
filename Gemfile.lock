@@ -108,6 +108,8 @@ GEM
       ensure_valid_encoding
       unf
     mediashelf-loggable (0.4.9)
+    meta-tags (2.0.0)
+      actionpack (>= 3.0.0)
     meta_request (0.2.9)
       callsite
       rack-contrib
@@ -205,6 +207,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jettywrapper (~> 1.7)
   jquery-rails
+  meta-tags
   meta_request
   progressbar
   rails (= 4.0.4)
