@@ -36,5 +36,6 @@ module CpcBlacklight
       'glyphicons-halflings-regular.woff',
       'glyphicons-halflings-regular.ttf',
       'glyphicons-halflings-regular.svg' ]
+    config.exceptions_app = self.routes
   end
 end
