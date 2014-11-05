@@ -45,6 +45,8 @@ GEM
       blacklight (~> 5.0)
       marc (>= 0.4.3, < 1.1)
       rails
+    blacklight-sitemap (2.0.0)
+      nokogiri
     blacklight_advanced_search (5.0.0)
       blacklight (>= 5.1, < 6.0)
       parslet
@@ -196,6 +198,7 @@ DEPENDENCIES
   binding_of_caller
   blacklight (>= 5.7.1)
   blacklight-marc (~> 5.0)
+  blacklight-sitemap (~> 2.0.0)
   blacklight_advanced_search
   coffee-rails (~> 4.0.0)
   dalli

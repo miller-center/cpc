@@ -62,6 +62,7 @@ gem "devise"
 gem "devise-guests", "~> 0.3"
 gem "blacklight-marc", "~> 5.0"
 gem "blacklight_advanced_search"
+gem 'blacklight-sitemap', '~> 2.0.0'
 
 # Install gems from each plugin
 Dir.glob(File.join(File.dirname(__FILE__), 'data', '**', "Gemfile")) do |gemfile|
