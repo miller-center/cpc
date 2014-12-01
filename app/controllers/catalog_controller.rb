@@ -69,9 +69,10 @@ class CatalogController < ApplicationController
     # facet bar
     config.add_facet_field 'format', :label => 'Format'
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
-    config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 20
+    config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 30
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     config.add_facet_field 'publisher_facet', :label => 'Partner', :limit => true
+    config.add_facet_field 'collection_facet', :label => 'Collection', :limit => 15
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
     config.add_facet_field 'subject_geo_facet', :label => 'Region' 
     config.add_facet_field 'subject_era_facet', :label => 'Era'  
@@ -79,10 +80,18 @@ class CatalogController < ApplicationController
     config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']
 
     config.add_facet_field 'date_query_facet_field', :label => 'Publish Date', :query => {
-       :century_20 => { :label => '1900 - present', :fq => "pub_date:[1900 TO *]" },
-       :century_19 => { :label => '1800 - 1899', :fq => "pub_date:[1800 TO 1899]" },
-       :century_18 => { :label => 'prior to 1800', :fq => "pub_date:[* TO 1799]" }
+       :century_21     => { :label => '2000 - present', :fq => "pub_date:[2000 TO *]" },
+       :century_20_b   => { :label => '1950 - 1999', :fq => "pub_date:[1950 TO 1999]" },
+       :century_20_a   => { :label => '1900 - 1949', :fq => "pub_date:[1900 TO 1949]" },
+       :century_19_b   => { :label => '1850 - 1899', :fq => "pub_date:[1850 TO 1899]" },
+       :century_19_a   => { :label => '1800 - 1849', :fq => "pub_date:[1800 TO 1849]" },
+       :century_18     => { :label => '1789 to 1799', :fq => "pub_date:[1789 TO 1799]" },
+       :pre_1789       => { :label => '1776 to 1788', :fq => "pub_date:[1776 TO 1788]" },
+       :pre_revolution => { :label => 'prior to 1776', :fq => "pub_date:[* TO 1776]" }
     }
+    config.add_facet_field 'contributor_facet', :label => 'Related Person', show: false
+    config.add_facet_field 'subject_facet', :label => 'Subject', show: false
+    config.add_facet_field 'author_facet', :label => 'Creator', :limit => 25
 
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -97,7 +106,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'description', :label => 'Description'
     #config.add_index_field 'date', :label => 'Date'
     config.add_index_field 'pub_date', :label => 'Date'
-    config.add_index_field 'published_display', :label => 'Partner'
+    config.add_index_field 'published_display', :label => 'Partner', :link_to_search => 'publisher_facet'
     config.add_index_field 'author_display', :label => 'Author'
     config.add_index_field 'author_vern_display', :label => 'Author'
     config.add_index_field 'format', :label => 'Format'
@@ -115,7 +124,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_display', :label => 'Author'
     config.add_show_field 'author_vern_display', :label => 'Author'
     config.add_show_field 'description', :label => 'Description'
-    config.add_show_field 'subject_t', :label => 'Subject'
+    config.add_show_field 'subject_t', :label => 'Subject', :link_to_search => 'subject_topic_facet'
     config.add_show_field 'format', :label => 'Format'
     config.add_show_field 'url_fulltext_display', :label => 'URL'
     config.add_show_field 'url_suppl_display', :label => 'More Information'
@@ -124,9 +133,19 @@ class CatalogController < ApplicationController
     config.add_show_field 'isPartOf', :label => 'Part of'
     config.add_show_field 'published_vern_display', :label => 'Published'
     config.add_show_field 'lc_callnum_display', :label => 'Call number'
+    config.add_show_field do |field|
+      field.field = 'contributor'
+      field.label = 'Related persons'
+      field.separator = "; "
+      field.link_to_search = 'contributor_facet'
+    end
     config.add_show_field 'isbn_t', :label => 'ISBN'
     config.add_show_field 'rights', :label => 'Rights'
     config.add_show_field 'source', :label => 'Source'
+    config.add_show_field 'alt_source_t', :label => 'Additional Source'
+    config.add_show_field 'author_addl_t', :label => 'Additional Authors'
+
+
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
