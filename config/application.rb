@@ -26,6 +26,8 @@ module CpcBlacklight
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     
+    config.application_name = "CPC"
+
     # set to true if you want bookmarks functionality
     config.enable_bookmarks = false
 
