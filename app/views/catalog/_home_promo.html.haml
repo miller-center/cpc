@@ -38,7 +38,7 @@
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("presidents/jefferson.jpg", :alt => "Thomas Jefferson", :class => "featured-item img-responsive", :title => "Thomas Jefferson"), "/?f%5Bpresident_facet%5D%5B%5D=Jefferson%2C+Thomas%2C+1743-1826"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("presidents/washington.jpg", :alt => "Woodrow Wilson", :class => "featured-item img-responsive", :title => "George Washington"), "/?f%5Bpresident_facet%5D%5B%5D=Washington%2C+George%2C+1732-1799"
+		= link_to image_tag("presidents/washington.jpg", :alt => "George Washington", :class => "featured-item img-responsive", :title => "George Washington"), "/?f%5Bpresident_facet%5D%5B%5D=Washington%2C+George%2C+1732-1799"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("presidents/adams.jpg", :alt => "John Adams", :class => "featured-item img-responsive", :title => "John Adams"), "/?f%5Bpresident_facet%5D%5B%5D=Adams%2C+John%2C+1735-1826"
 	.featured-president(class="col-md-2 col-sm-3 col-xs-4")
@@ -66,6 +66,14 @@
 %h3(id="partners") Meet our Partners
 .featured(class="col-md-8")
 	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-nara.gif", :alt => "Founders Online", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#founders"		
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-rotunda.gif", :alt => "Rotunda", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#rotunda"			
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-rooseveltCtr.jpg", :alt => "Theodore Roosevelt Center at Dickinson State University", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#trc"	
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
+		= link_to image_tag("logo-grantLibr.gif", :alt => "Ulysses S. Grant Presidential Library", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#usgpl"	
+	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("logo-wilsonCtr.gif", :alt => "Wilson Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#wwp"
 	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("logo-sixthFloor.gif", :alt => "Sixth Floor Museum", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#sfm"
@@ -77,6 +85,8 @@
 		= link_to image_tag("logo-hayes.gif", :alt => "Hayes Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#hpc"
 	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
 		= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#ohp"
+
+
 	%p <a class="more featured-note" href="/partners">more about our partners →</a></p>
 
 
