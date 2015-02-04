@@ -39,6 +39,10 @@ group :doc do
 end
 
 gem 'blacklight', ">= 5.7.1"
+
+# use latest bootstrap-sass for glyphicons 1.9
+gem 'bootstrap-sass', :git => 'https://github.com/twbs/bootstrap-sass.git', :tag => 'v3.3.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

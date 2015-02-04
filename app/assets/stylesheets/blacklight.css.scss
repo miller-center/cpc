@@ -174,3 +174,25 @@ h1.show-title-display {font-size: 30px;}
 /* for error pages */
 .apology {background-color: lighten(#000, 75%);}
 .portrait {border-radius: 4px; border:thick solid black;width: 20em;height: 20em;}
+
+.pivot-values:before {
+  font-family: 'Glyphicons Halflings';
+}
+.pivot-values {
+  display: table-cell;
+  font-family: inherit;  /* essential for enabling glyphicon */
+  float: left;        /* adjust as needed */
+  color: grey;         /* adjust as needed */ 
+  font-size: 0.6em;
+  position:relative;
+  width: 0;
+  left: -1.5em;
+}
+.pivot-values-invisible {
+  color: white;
+}
+
+.pivot-facet a.remove { 
+  position:relative;
+  left: 30%;
+}

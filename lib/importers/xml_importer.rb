@@ -34,11 +34,11 @@ class XmlImporter
 
   def initialize
     @record_delimiter = ''
-    @namespaces = {}
+    @namespaces = HashWithIndifferentAccess.new
     @mappings_prefix = ''
-    @mappings = {}
+    @mappings = HashWithIndifferentAccess.new
     @default_filter = self.class.strip_whitespace_filter
-    @filters = {}
+    @filters = HashWithIndifferentAccess.new
 
     yaml_path = File.expand_path('../../../config/solr.yml', __FILE__)
     @solr_config = YAML::load(ERB.new(IO.read(yaml_path)).result)[Rails.env.to_s]
@@ -60,7 +60,13 @@ class XmlImporter
       if ! dry_run
         import_record_node(record, options)
       else
-        display_record_node(record, options)
+        response = display_record_node(record, options)
+        case response
+        when String
+          STDERR.puts string
+        else 
+          STDOUT.puts response.inspect
+        end
       end
       pbar.inc unless options[:dry_run]
     end
@@ -119,7 +125,7 @@ class XmlImporter
   end
 
 
-  private
+  #private
 
   def build_solr_add_doc(record, options={})
     solrdoc = {}
@@ -130,62 +136,8 @@ class XmlImporter
         field_val = node.text
 
         # try to make ISO8601-compatible dates
-        if docfield == :date && field_val =~ /\d{4}-\d{4}/ # e.g. 1756-1804
-          begin
-            puts "Case 0 #{field_val}" if @debug
-            regex = Regexp.new(/\d{4}/) 
-            result = regex.match(field_val)
-            field_val = result[0] # index first date only
-            if field_val =~ /^\d{4}$/
-              field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
-            end
-          rescue
-            field_val = node.text
-          end
-        elsif docfield == :date && field_val =~ /century/
-          begin
-            puts "Case 1 #{field_val}" if @debug
-            regex = Regexp.new(/\d{2}/)
-            result = regex.match(field_val)
-            field_val = result[0].to_i.-(1).to_s + "50" # 18 becomes 1750, midpoint of 18th C.
-            field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
-          rescue
-            field_val = node.text
-          end
-        elsif docfield == :date && field_val.to_i > 0
-          begin
-            puts "Case 2 #{field_val}" if @debug
-            if field_val.to_datetime # will raise exception unless true
-              field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
-            end
-          rescue
-            field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
-          end
-        elsif docfield == :date && field_val =~ /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i && field_val.to_datetime.year > 0
-          begin
-            puts "Case 3 #{field_val}" if @debug
-            if field_val.to_datetime.year > 1492 # avoid insane values
-              field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
-            else
-              field_val = node.text
-              docfield  = :pub_date
-            end
-          rescue
-            field_val = node.text
-          end
-        elsif docfield == :date && field_val =~ /circa/i
-          begin
-            puts "Case 4 #{field_val}" if @debug
-            field_val = Date.new(field_val.gsub(/circa/i, '').strip.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
-          rescue
-            field_val = node.text
-          end
-        else
-          if docfield == :date
-            puts "Case 5 #{field_val} new docfield = :pub_date" if @debug
-            docfield = :pub_date # Solr typed as string, will handle strings that fail ISO 8601 validation 
-          end
-        end
+        docfield, field_val = parse_date_field(docfield, field_val)
+        
 
         if solrdoc[docfield]
           if solrdoc[docfield].is_a?(Array)
@@ -212,6 +164,18 @@ class XmlImporter
         solrdoc[docfield] = field_val
       end
     end 
+    # add additional date facet fields, if date
+    if solrdoc[:date]
+      date = solrdoc[:date]
+      if date[0..3] =~ /\d{4}/
+        century = "#{date[0..1]}00s"
+        decade = "#{date[0..2]}0s"
+        year = "#{date[0..3]}"
+        solrdoc[:date_century_t] = century
+        solrdoc[:date_decade_t] = decade
+        solrdoc[:date_year_t] = year
+      end
+    end
     solrdoc   
   end
 
@@ -220,9 +184,9 @@ class XmlImporter
     raise RuntimeError unless solrdoc.kind_of? Hash
 
     if solrdoc.empty?
-      STDERR.puts "Skipping empty record"
+      "Skipping empty record"
     else
-      STDOUT.puts solrdoc.inspect
+      solrdoc
     end    
   end
 
@@ -240,6 +204,90 @@ class XmlImporter
     rescue StandardError => err
       STDERR.puts "Error importing record: #{err}\n\tDoc: #{solrdoc}"
     end
+  end
+
+  # extracted from build_solr_add_doc
+  def parse_date_field(docfield, field_val)
+    if docfield == :date && field_val =~ /\d{4}-\d{4}/ # e.g. 1756-1804
+      begin
+        puts "Case 0 #{field_val}" if @debug
+        regex = Regexp.new(/\d{4}/) 
+        result = regex.match(field_val)
+        field_val = result[0] # index first date only
+        if field_val =~ /^\d{4}$/
+          field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+        end
+      rescue
+        field_val = node.text
+      end
+    elsif docfield == :date && field_val =~ /century/
+      begin
+        puts "Case 1 #{field_val}" if @debug
+        regex = Regexp.new(/\d{2}/)
+        result = regex.match(field_val)
+        field_val = result[0].to_i.-(1).to_s + "50" # 18 becomes 1750, midpoint of 18th C.
+        field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+      rescue
+        field_val = node.text
+      end
+    elsif docfield == :date && field_val =~ /\d{4}-\d{2}/ && field_val !~ /\d{4}-\d{2}-\d{2}/  # e.g. 1862-09-XX, 1862-09
+      begin
+        puts "Case 1a #{field_val}" if @debug
+        regex = Regexp.new(/(\d{4})-(\d{2})/)
+        result = regex.match(field_val)
+        date = Date.new(result[1].to_i)
+        field_val = DateTime.new(date.year, result[2].to_i, 15, 0, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%SZ')
+      rescue
+        field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+      end
+    elsif docfield == :date && field_val =~ /^\d{2,3}[X\?]{1,2}/   # e.g. 18XX-XX-XX, 18??
+      begin
+        puts "Case 1b #{field_val}" if @debug
+        regex = Regexp.new(/(\d{2,3})([X\?]{1,2})/)
+        result = regex.match(field_val)
+        estimated_year = result[1]
+        estimated_year.length > 2 ? estimated_year<<"5" : estimated_year<<"50"        
+        date = Date.new(estimated_year.to_i)
+        # set to Jan 1, estimated year = mid-point of available date resolution, e.g., 1850
+        field_val = DateTime.new(date.year, 1, 1, 0, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%SZ')
+      rescue
+        field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+      end
+    elsif docfield == :date && field_val.to_i > 0
+      begin
+        puts "Case 2 #{field_val}" if @debug
+        if field_val.to_datetime # will raise exception unless true
+          field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+        end
+      rescue
+        field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+      end
+    elsif docfield == :date && field_val =~ /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i && field_val.to_datetime.year > 0
+      begin
+        puts "Case 3 #{field_val}" if @debug
+        if field_val.to_datetime.year > 1492 # avoid insane values
+          field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+        else
+          docfield  = :pub_date
+          field_val
+        end
+      rescue
+        field_val 
+      end
+    elsif docfield == :date && field_val =~ /circa/i
+      begin
+        puts "Case 4 #{field_val}" if @debug
+        field_val = Date.new(field_val.gsub(/circa/i, '').strip.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
+      rescue
+        field_val 
+      end
+    else
+      if docfield == :date
+        puts "Case 5 #{field_val} new docfield = :pub_date" if @debug
+        docfield = :pub_date # Solr typed as string, will handle strings that fail ISO 8601 validation 
+      end
+    end
+    return docfield, field_val
   end
 
 end
