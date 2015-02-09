@@ -676,6 +676,9 @@
    <copyField source="president_t" dest="president_facet"/>
    <copyField source="subject_t" dest="subject_facet"/>
    <copyField source="subject_t" dest="subject_topic_facet"/>
+   <copyField source="contributor" dest="contributor_facet"/>
+   <copyField source="author_t" dest="author_facet"/>
+   <copyField source="isPartOf" dest="collection_facet"/>
 
    <!-- unstemmed fields -->
    <copyField source="title_t" dest="title_unstem_search"/>

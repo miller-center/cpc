@@ -107,6 +107,7 @@
          subject_addl_t^50
          title_series_unstem_search^25
          title_series_t^10
+         description^10
          isbn_t
          text
        </str>
@@ -131,6 +132,7 @@
          subject_addl_t^500
          title_series_unstem_search^250
          title_series_t^100
+         description^10
          text^10
        </str>
        <str name="author_qf">
@@ -176,6 +178,7 @@
          subject_t^50
          subject_addl_unstem_search^10
          subject_addl_t
+         description^10
        </str>
        <str name="subject_pf">
          subject_topic_unstem_search^2000
@@ -184,6 +187,7 @@
          subject_topic_facet^500
          subject_addl_unstem_search^100
          subject_addl_t^10
+         description^10
        </str>
        
        <int name="ps">3</int>
