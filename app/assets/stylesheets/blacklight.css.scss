@@ -12,6 +12,7 @@ $header-navbar-height-lg: 10em;
 $header-navbar-height-sm: 5em;
 $navbar-brand-scale-lg: 80.00%;
 
+@import 'bootstrap-sprockets';
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
@@ -51,6 +52,9 @@ $navbar-brand-scale-lg: 80.00%;
   }
   @media screen and (min-width:768px) {
     height: $header-navbar-height-lg;
+    .form-control {
+      width: 500px;
+    }
   }
   .navbar-brand {
     @media screen and (max-width:767px) {
