@@ -178,3 +178,9 @@ h1.show-title-display {font-size: 30px;}
 /* for error pages */
 .apology {background-color: lighten(#000, 75%);}
 .portrait {border-radius: 4px; border:thick solid black;width: 20em;height: 20em;}
+
+/* parenthetical remark for pay-only URLs */
+.blacklight-enhanced-note {
+  overflow: visible !important;
+  font-size: smaller;
+}
