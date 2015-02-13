@@ -92,7 +92,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor_facet', :label => 'Related Person', show: false
     config.add_facet_field 'subject_facet', :label => 'Subject', show: false
     config.add_facet_field 'author_facet', :label => 'Creator', :limit => 25
-
+    config.add_facet_field 'date_century_facet', :label => 'Century', :show => false, :sort => 'index', :collapse => true
+    config.add_facet_field 'date_decade_facet', :label => 'Decade', :show => false, :sort => 'index', :collapse => true
+    config.add_facet_field 'date_year_facet', :label => 'Year', :show => false, :sort => 'index', :collapse => true
+    config.add_facet_field 'date_pivot_field', :label => 'Date', :pivot => ['date_century_facet', 'date_decade_facet', 'date_year_facet']
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -142,7 +145,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'isbn_t', :label => 'ISBN'
     config.add_show_field 'rights', :label => 'Rights'
     config.add_show_field 'source', :label => 'Source'
-    config.add_show_field 'alt_source_t', :label => 'Additional Source'
+    config.add_show_field 'alt_source_t', :label => 'Enhanced Source'
     config.add_show_field 'author_addl_t', :label => 'Additional Authors'
 
 
