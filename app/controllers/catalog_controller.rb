@@ -70,6 +70,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format', :label => 'Format'
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     config.add_facet_field 'president_facet', :label => 'Presidency', :limit => 30
+    config.add_facet_field 'potus_facet', :label => 'Presidency', :limit => 30, sort: :index
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     config.add_facet_field 'publisher_facet', :label => 'Partner', :limit => true
     config.add_facet_field 'collection_facet', :label => 'Collection', :limit => 15
