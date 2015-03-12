@@ -22,7 +22,12 @@ $navbar-brand-scale-lg: 80.00%;
             font-size:123%
         }
 }
+#header-navbar > .container {
+  background-color: $mc-blue;
+}
 #header-navbar {
+  background-color: $mc-blue;
+  margin-bottom: 0;
   .navbar-brand {  /* The main logo image for the Blacklight instance */
     height: $header-navbar-height-lg;
     width: 290px;
@@ -36,8 +41,7 @@ $navbar-brand-scale-lg: 80.00%;
     padding-right:0;
     margin-right:20px;
     padding-left: 0;
-}
-  background-color: $mc-blue;
+  }
 }
 
 // Bootstrap rendering thresholds
@@ -64,22 +68,22 @@ $navbar-brand-scale-lg: 80.00%;
         }
     }
     .form-control { height: 2.8em;}
-	.input-group-btn > button { height: 2.8em;}
+  .input-group-btn > button { height: 2.8em;}
 }
 
 .cpc-search-sm {
-	@media screen and (max-width: 767px) {
-		display: block;
-		background-color: $mc-blue;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-		border:none;
-		div.container > div.navbar-header > form > div.input-group { padding-left:1em;}
+  @media screen and (max-width: 767px) {
+    display: block;
+    background-color: $mc-blue;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border:none;
+    div.container > div.navbar-header > form > div.input-group { padding-left:1em;}
         .form-control { height: 2.8em;}
         .input-group-btn > button { height: 2.8em;}
     }
-	@media screen and (min-width: 768px) {
-		display: none;
+  @media screen and (min-width: 768px) {
+    display: none;
     }
 }
 .cpc-search-md {
@@ -112,7 +116,7 @@ ul.blacklight-advanced-facet-select {
 }
 
 /* Standard "more" styling */
-.more {	text-transform: uppercase; font-size: 80%;}
+.more {  text-transform: uppercase; font-size: 80%;}
 
 
 /*The aside is created as an entity separate from the #secondary-message so we can have more than one block in the aside if we want to. The main-message might go there, for instance.*/
@@ -120,48 +124,48 @@ ul.blacklight-advanced-facet-select {
 aside#home-aside {float:right;}
 
 aside#home-aside #secondary-message, aside#home-aside #survey {
-	margin: 25px 0 25px 10px; 
-	padding: 10px; 
-	background: #edf2f7;
-	-webkit-border-radius: $border-radius-large; 
-	-moz-border-radius: $border-radius-large;
-	border-radius: $border-radius-large}
+  margin: 25px 0 25px 10px; 
+  padding: 10px; 
+  background: #edf2f7;
+  -webkit-border-radius: $border-radius-large; 
+  -moz-border-radius: $border-radius-large;
+  border-radius: $border-radius-large}
 
 .featured .featured-president, .featured .featured-partner {padding: 5px;}
 
 h3#partners {clear:left; margin-top: 25px;}
 
 #funding {
-	padding-bottom: $footer-height;
+  padding-bottom: $footer-height;
 }
 
 #footer {
-	background-color: $mc-blue;
-	color: white;
+  background-color: $mc-blue;
+  color: white;
   * {
     background-color: $mc-blue;
   }
 }
 * {
-	margin: 0;
+  margin: 0;
 }
 html, body {
-	height: 100%;
+  height: 100%;
 }
 .wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -$footer-height; /* the bottom margin is the negative value of the footer's height */
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -$footer-height; /* the bottom margin is the negative value of the footer's height */
 }
 .footer, .push {
-	height: $footer-height; /* .push must be the same height as .footer */
-	text-align:center;
+  height: $footer-height; /* .push must be the same height as .footer */
+  text-align:center;
 }
 .bookmark_show {
-	float:right;
-	width:12%;
-	padding-left: 0.5em;
+  float:right;
+  width:12%;
+  padding-left: 0.5em;
 }
 
 .question {margin-top: 25px;}
@@ -183,4 +187,19 @@ h1.show-title-display {font-size: 30px;}
 .blacklight-enhanced-note {
   overflow: visible !important;
   font-size: smaller;
+}
+/* ensure collapsable menu flows properly */
+#user-util-collapse {
+  float: left;
+  width: 110%;
+  margin-top: 2em;
+  margin-right:0;
+}
+@media screen and (max-width:767px) {
+  #search-navbar {
+    margin-top: 0px;
+    clear:left;
+    float:left;
+    width:100%;
+  }
 }
