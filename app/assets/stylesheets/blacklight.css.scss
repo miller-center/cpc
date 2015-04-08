@@ -78,13 +78,41 @@ $navbar-brand-scale-lg: 80.00%;
     padding-left: 0.5em;
     padding-right: 0.5em;
     border:none;
-    div.container > div.navbar-header > form > div.input-group { padding-left:1em;}
-        .form-control { height: 2.8em;}
-        .input-group-btn > button { height: 2.8em;}
+    div.container > div.navbar-header > form > div.input-group { 
+      padding-left:1em;
     }
+    .form-control { 
+      height: 2.8em;
+    }
+    .input-group-btn > button { 
+      height: 2.8em;
+    }
+  }
   @media screen and (min-width: 768px) {
-    display: none;
+    display: block;
+    margin-top: 1.5em !important;
+    .container > .navbar-header {
+      width: 100% !important;
+      form.search-query-form {
+        width: 100% !important;
+        div.input-group {
+          width:100%;
+          input#q {
+            width: 60em;
+          }
+          span#field-menu {
+            width:5em;
+          }
+          span#search-button {
+            width:7em;
+          }
+          span#more-options {
+            float:right;
+          }
+        }
+      }
     }
+  }
 }
 .cpc-search-md {
     // to-do
