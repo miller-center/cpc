@@ -17,9 +17,17 @@ $navbar-brand-scale-lg: 80.00%;
 @import 'blacklight/blacklight';
 // customize styling here
 @media (min-width: 1200px) {
-        .topbarlogo {
-            font-size:123%
-        }
+  .topbarlogo {
+    font-size:123%;
+  }
+  input#q {
+    width: 60em !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 999px) {
+  input#q {
+    width: 30em !important;
+  }
 }
 #header-navbar > .container {
   background-color: $mc-blue;
@@ -94,7 +102,7 @@ $navbar-brand-scale-lg: 80.00%;
         div.input-group {
           width:100%;
           input#q {
-            width: 60em;
+            width: 50em;
           }
           span#field-menu {
             width:5em;
