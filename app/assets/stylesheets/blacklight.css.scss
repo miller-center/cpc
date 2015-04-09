@@ -12,7 +12,6 @@ $header-navbar-height-lg: 10em;
 $header-navbar-height-sm: 5em;
 $navbar-brand-scale-lg: 80.00%;
 
-@import 'bootstrap-sprockets';
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
@@ -56,9 +55,6 @@ $navbar-brand-scale-lg: 80.00%;
   }
   @media screen and (min-width:768px) {
     height: $header-navbar-height-lg;
-    .form-control {
-      width: 500px;
-    }
   }
   .navbar-brand {
     @media screen and (max-width:767px) {
@@ -211,10 +207,26 @@ h1.show-title-display {font-size: 30px;}
 .apology {background-color: lighten(#000, 75%);}
 .portrait {border-radius: 4px; border:thick solid black;width: 20em;height: 20em;}
 
-/* parenthetical remark for pay-only URLs */
-.blacklight-enhanced-note {
-  overflow: visible !important;
-  font-size: smaller;
+.pivot-values:before {
+  font-family: 'Glyphicons Halflings';
+}
+.pivot-values {
+  display: table-cell;
+  font-family: inherit;  /* essential for enabling glyphicon */
+  float: left;        /* adjust as needed */
+  color: grey;         /* adjust as needed */ 
+  font-size: 0.6em;
+  position:relative;
+  width: 0;
+  left: -1.5em;
+}
+.pivot-values-invisible {
+  color: white;
+}
+
+.pivot-facet a.remove { 
+  position:relative;
+  left: 30%;
 }
 /* ensure collapsable menu flows properly */
 #user-util-collapse {
