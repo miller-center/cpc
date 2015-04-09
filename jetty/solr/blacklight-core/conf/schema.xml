@@ -676,7 +676,13 @@
    <copyField source="president_t" dest="president_facet"/>
    <copyField source="subject_t" dest="subject_facet"/>
    <copyField source="subject_t" dest="subject_topic_facet"/>
+   <copyField source="contributor" dest="contributor_facet"/>
+   <copyField source="author_t" dest="author_facet"/>
+   <copyField source="isPartOf" dest="collection_facet"/>
 
+   <copyField source="date_century_t" dest="date_century_facet"/>
+   <copyField source="date_decade_t" dest="date_decade_facet"/>
+   <copyField source="date_year_t" dest="date_year_facet"/>
    <!-- unstemmed fields -->
    <copyField source="title_t" dest="title_unstem_search"/>
    <copyField source="subtitle_t" dest="subtitle_unstem_search"/>
