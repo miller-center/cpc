@@ -133,6 +133,7 @@ GEM
     parslet (1.5.0)
       blankslate (~> 2.0)
     polyglot (0.3.5)
+    progressbar (0.21.0)
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -218,6 +219,7 @@ DEPENDENCIES
   jettywrapper (~> 1.7)
   jquery-rails
   meta_request
+  progressbar
   rails (= 4.0.4)
   sass-rails (~> 4.0.2)
   sdoc
