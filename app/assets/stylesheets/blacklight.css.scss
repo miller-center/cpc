@@ -251,3 +251,36 @@ h1.show-title-display {font-size: 30px;}
     width:100%;
   }
 }
+.custom01 {
+  border:thin solid white;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  .featured-president-data {
+    position: absolute; 
+    visibility: hidden; 
+    color: white;
+    transition: visibility 0s ease-in;
+  }
+}
+.custom01:hover {
+  border:thin solid black;
+  width:175px;
+  height:250px;
+  .featured-president-data {
+    padding: 0.5em 0 0 0;
+    position:relative;
+    visibility:visible;
+    color: black;
+    -webkit-transition-duration: 2s;
+    transition-duration: 2s; 
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    font-size: 95%;
+  }
+  img.featured-item {
+    width: inherit;
+    height: inherit;
+  }
+}
