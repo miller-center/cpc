@@ -251,6 +251,10 @@ h1.show-title-display {font-size: 30px;}
     width:100%;
   }
 }
+/* Browse By President styles ('featured items') */
+img.featured-item {
+
+}
 .custom01 {
   border:thin solid white;
   -webkit-transition-duration: 1s;
@@ -283,4 +287,38 @@ h1.show-title-display {font-size: 30px;}
     width: inherit;
     height: inherit;
   }
+}
+.fp-top, .fp-bottom, .fp-left, .fp-right {
+  position:relative;
+  width: 50%;
+  height: 50%;
+  border:1px solid grey;
+  background-color: white;
+} 
+.fp-top:hover, .fp-bottom:hover, .fp-left:hover, .fp-right:hover {
+  clear:both;
+  float:none;
+  // top:0;
+  // left:0;
+  position:absolute;
+  z-index: 999;
+}
+.fp-top {
+  top:0;
+}
+.fp-bottom {
+  bottom:0;
+}
+.fp-left {
+  left:0;
+  float:left;
+}
+.fp-right {
+  right: 0px;
+  float:right;
+}
+.featured-president-group {
+  border:thin solid blue;
+  max-height: 250px;
+  overflow-y:hidden;
 }
