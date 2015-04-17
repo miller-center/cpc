@@ -1,6 +1,13 @@
+/* get global CSS variables */
+@import 'variables';
+
 /* Browse By President styles ('featured items') */
 $featured-item-link-pad: 35%;
 $featured-item-link-color: #337ab7;
+
+
+.featured .featured-president, .featured .featured-partner {padding: 5px;}
+.featured-note {float: right;}
 img.featured-item {
 
 }
@@ -23,13 +30,13 @@ img.featured-item {
     transition-delay: 2s;
   }
 }
-.fp-conceal:hover {
+.fp-conceal:hover, .fp-hovering {
   border:thin solid black;
   .featured-president-data {
-    padding: 0.5em 0 0.5em 0;
+    padding: 0.5em;
     position:absolute;
     visibility:visible;
-    color: black;
+    // color: $featured-item-link-color;
     -webkit-transition-duration: 2s;
     transition-duration: 2s; 
     -webkit-transition-delay: 1s;
@@ -54,15 +61,13 @@ img.featured-item {
 }
 .fp-top, .fp-bottom, .fp-left, .fp-right {
   position:relative;
-  width: 50%;
+  width:  50%;
   height: 50%;
   background-color: white;
 } 
-.fp-top:hover, .fp-bottom:hover, .fp-left:hover, .fp-right:hover {
+.fp-top:hover, .fp-bottom:hover, .fp-left:hover, .fp-right:hover, .fp-hovering {
   clear:both;
   float:none;
-  // top:0;
-  // left:0;
   position:absolute;
   z-index: 2;
 }
@@ -112,11 +117,28 @@ img.featured-item {
   right: 0px;
   float:right;
 }
-.featured-president-group {
-  // border:thin solid blue;
-  max-height: 250px;
-  overflow-y:hidden;
+/* Retina screen styling */
+@media screen
+  and (min-device-width: ($x-large-min-width + px)) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) {
+  .featured-president-group {
+    max-height: 250px;
+    overflow-y:hidden;
+  }
 }
+/* Other large desk/laptop screens */
+@media screen
+  and (min-device-width: ($large-min-width + px))
+  and (min-width: ($large-min-width + px)) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+   .featured-president-group {
+    max-height: 250px;
+    overflow-y:hidden;
+  }   
+}  
+
 .featured-president-pane.fp-left, .featured-president-pane.fp-right, .featured-president-pane.fp-top, .featured-president-pane.fp-bottom {
   a {
     img.featured-item {
@@ -187,23 +209,6 @@ img.featured-item {
     left: 15%;
   }
 }
-.himatt {
-  color:white;
-  background-color: black;
-  opacity:0;
-  top: 0;
-  left: 0;
-  transition-delay: 0.5s;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
-}
-.himatt:hover {
-  height: 100% !important;
-  width: 100% !important;
-  background-color: #EFEEEF;
-  color:black;
-  opacity:100;
-}
 .fp-zoom {
   color:#EFEFEF;
   background-color: black;
@@ -215,7 +220,7 @@ img.featured-item {
   transition-duration: 1s;
   transition-timing-function: ease-in-out;
 }
-.fp-zoom:hover {
+.fp-zoom:hover, .fp-hovering {
   height: 100% !important;
   width: 100% !important;
   background-color: #EFEEEF !important;
@@ -238,13 +243,14 @@ img.featured-item {
   transition-property: opacity;
   opacity: 0;
 }
-.featured-president-pane:hover {
+.featured-president-pane:hover, .fp-hovering {
   .featured-president-data, .fp-nav {
     opacity: 100;
   }
 }
+/* Retina screen styling */
 @media screen
-  and (min-device-width: 1200px) 
+  and (min-device-width: ($x-large-min-width + px)) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) {
@@ -255,5 +261,58 @@ img.featured-item {
     .featured-president-data {
       font-size:75%;
     }
+  }
+}
+/* Other large desk/laptop screens */
+@media screen
+  and (min-device-width: ($large-min-width + px)) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .featured-president-pane.fp-zoom {
+    img {
+      height: 64% !important;
+    }
+    .featured-president-data {
+      font-size:80%;
+    }
+  }
+}
+/* Medium screens, non-Retina */
+@media screen
+  and (min-width: ($medium-min-width + px))
+  and (max-width: ($large-min-width + px))
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .featured-president-pane.fp-zoom {
+    img {
+      height: 70% !important;
+    }
+    .featured-president-data {
+      font-size:100%;
+    }
+  }
+  .featured.row {
+    height:100%;
+  }
+  .featured-note {
+  }
+  .featured-president-pane.fp-zoom, .featured-president {
+    min-height: none;
+    height: 50%;
+  }
+  .featured-president-group {
+    min-height: none;
+    height: 100%;
+    width:50%;
+    float:right;
+  }
+  .featured-president-group:nth-child(1) {
+    clear:both;
+    float:left;
+  }
+  .featured-president-group:nth-child(3) {
+    clear:both;
+    float:left;
+  }
+  .col-md-4 {
+    border-color: yellow !important;
   }
 }

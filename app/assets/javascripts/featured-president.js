@@ -1,5 +1,13 @@
-/* add holdings data to expanded window for featured presidents */
+/* simulated hover for touch devices */
+$(document).ready(function() {
+  $('.fp-nav').bind('touchstart touchend', function(e) {
+    e.preventDefault();
+    $(this).toggleClass('fp-hovering');
+  });
+});
 
+
+/* add holdings data to expanded window for featured presidents */
 jQuery.fn.getPresidentData = function() {
   var target = $(this[0]);
   var holdings = target.data('holdings');

@@ -1,22 +1,10 @@
-//update variables here, e.g.
-//$navbar-default-bg: #A9DBEC;
-//$body-bg: #96C2D1;
-//$font-family-base: 'Transat';
-$logo_image: 'cpc-logo.png' !default;
-$logo_image-lg: 'cpc-logo.png';
-$logo_image-md: 'cpc-logo-md.png';
-$logo_image-sm: 'cpc-logo-sm.png';
-$mc-blue: #345482;
-$footer-height: 4em;
-$header-navbar-height-lg: 10em;
-$header-navbar-height-sm: 5em;
-$navbar-brand-scale-lg: 80.00%;
-
+// CPC custom stylesheet
 @import 'bootstrap';
+@import 'variables';
 
 @import 'blacklight/blacklight';
 // customize styling here
-@media (min-width: 1200px) {
+@media screen and (min-width: ($x-large-min-width + px)) {
   .topbarlogo {
     font-size:123%;
   }
@@ -24,7 +12,7 @@ $navbar-brand-scale-lg: 80.00%;
     width: 60em !important;
   }
 }
-@media screen and (min-width: 768px) and (max-width: 999px) {
+@media screen and (min-width: $medium-min-width + px) and (max-width: 999px) {
   input#q {
     width: 30em !important;
   }
@@ -57,15 +45,15 @@ $navbar-brand-scale-lg: 80.00%;
 // @media(min-width:992px){}
 // @media(min-width:1200px){}
 #header-navbar {
-  @media screen and (max-width:767px) {
+  @media screen and (max-width:($medium-min-width - 1)+ px) {
     height: $header-navbar-height-sm;
     border-bottom-width: 0px;
   }
-  @media screen and (min-width:768px) {
+  @media screen and (min-width:($medium-min-width + px)) {
     height: $header-navbar-height-lg;
   }
   .navbar-brand {
-    @media screen and (max-width:767px) {
+    @media screen and (max-width:($medium-min-width - 1) + px) {
       background:transparent image_url($logo_image-sm) no-repeat top left;
       background-size: 4.0em;
       height: 4em;
@@ -76,7 +64,7 @@ $navbar-brand-scale-lg: 80.00%;
 }
 
 .cpc-search-sm {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ($medium-min-width - 1 ) + px) {
     display: block;
     background-color: $mc-blue;
     padding-left: 0.5em;
@@ -92,7 +80,7 @@ $navbar-brand-scale-lg: 80.00%;
       height: 2.8em;
     }
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $medium-min-width + px) {
     display: block;
     margin-top: 1.5em !important;
     .container > .navbar-header {
@@ -124,10 +112,10 @@ $navbar-brand-scale-lg: 80.00%;
 .cpc-search-lg {
   position:relative;
   float:left;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ($medium-min-width - 1) + px) {
     display: none;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $medium-min-width + px) {
     display: block;
   }
 }
@@ -162,8 +150,6 @@ aside#home-aside #secondary-message, aside#home-aside #survey {
   -webkit-border-radius: $border-radius-large; 
   -moz-border-radius: $border-radius-large;
   border-radius: $border-radius-large}
-
-.featured .featured-president, .featured .featured-partner {padding: 5px;}
 
 h3#partners {clear:left; margin-top: 25px;}
 
@@ -202,7 +188,6 @@ html, body {
 
 .question {margin-top: 25px;}
 .partner-logo {float:right; text-align: center;}
-.featured-note {float: right;}
 
 #footer {color: #eee;}
 #footer a {color: #bbb;}
@@ -243,7 +228,7 @@ h1.show-title-display {font-size: 30px;}
   margin-top: 2em;
   margin-right:0;
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width: ($medium-min-width - 1 ) + px) {
   #search-navbar {
     margin-top: 0px;
     clear:left;
