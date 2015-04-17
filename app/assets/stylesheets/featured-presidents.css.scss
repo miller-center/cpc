@@ -1,4 +1,6 @@
 /* Browse By President styles ('featured items') */
+$featured-item-link-pad: 35%;
+$featured-item-link-color: #337ab7;
 img.featured-item {
 
 }
@@ -23,10 +25,6 @@ img.featured-item {
 }
 .fp-conceal:hover {
   border:thin solid black;
-  width:175px;
-  height:250px;
-  transition: height 0.5s ease-in;
-  transition: width 0.5s ease-in;
   .featured-president-data {
     padding: 0.5em 0 0.5em 0;
     position:absolute;
@@ -125,8 +123,19 @@ img.featured-item {
       margin: 5px;
     }
   }
+  // glyphicons-eye-open add-on
+  span.fp-nav {
+    display:block;
+    position:absolute;
+    z-index: -1;
+    font-size:larger;
+  }
 }
 .featured-president-pane.fp-top {
+  // glyphicons-eye-open add-on
+  span.fp-nav {
+    top: 30%;
+  }
   .featured-president-data {
     position:absolute;
     bottom:0;
@@ -141,9 +150,24 @@ img.featured-item {
       margin-bottom: 0 !important;
     }
   }
+  // glyphicons-eye-open add-on
+  span.fp-nav {
+    top: 70%;
+  }
   .featured-president-data {
     position:absolute;
     top:0;
+  }
+}
+.featured-president-pane.fp-left {
+  a {
+    img.featured-item {
+      padding-right: $featured-item-link-pad;
+    }
+  }
+  // glyphicons-eye-open add-on
+  span.fp-nav {
+    right: 15%;
   }
 }
 .featured-president-pane.fp-right {
@@ -151,12 +175,16 @@ img.featured-item {
   // clear:both !important;
   a {
     right:0;
-    img {
+    img.featured-item {
       position: absolute;
       margin-right: 5px;
-      // float:right;
+      padding-left: $featured-item-link-pad;
       right:0;
     }
+  }
+  // glyphicons-eye-open add-on
+  span.fp-nav {
+    left: 15%;
   }
 }
 .himatt {
@@ -191,26 +219,27 @@ img.featured-item {
   height: 100% !important;
   width: 100% !important;
   background-color: #EFEEEF !important;
-  color:black;
+  color:$featured-item-link-color;
   opacity:100 !important;
 }
-
 .featured-president-data {
+  font-size: 90%;
   padding: 0.5em;
-  color: black;
+}
+.featured-president-data, .fp-nav {
+  color: $featured-item-link-color;
   -webkit-transition-duration: .75s;
   transition-duration: .75s; 
   -webkit-transition-delay: 2s;
-  transition-delay: 2s;
+  transition-delay: 1.5s;
   -webkit-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
   -webkit-transition-property: opacity;
   transition-property: opacity;
-  font-size: 90%;
   opacity: 0;
 }
 .featured-president-pane:hover {
-  .featured-president-data {
+  .featured-president-data, .fp-nav {
     opacity: 100;
   }
 }
@@ -219,13 +248,12 @@ img.featured-item {
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) {
-    .featured-president-pane.fp-zoom {
-      img {
-        height: 60% !important;
-      }
-      .featured-president-data {
-        color:red !important;
-        font-size:75%;
-      }
+  .featured-president-pane.fp-zoom {
+    img {
+      height: 60% !important;
     }
+    .featured-president-data {
+      font-size:75%;
+    }
+  }
 }
