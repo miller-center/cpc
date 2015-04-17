@@ -1,7 +1,6 @@
 /* simulated hover for touch devices */
 $(document).ready(function() {
-  $('.fp-nav').bind('touchstart touchend', function(e) {
-    e.preventDefault();
+  $('.featured-president-pane').bind('touchstart touchend', function(e) {
     $(this).toggleClass('fp-hovering');
   });
 });
