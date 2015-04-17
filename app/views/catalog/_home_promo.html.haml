@@ -54,19 +54,27 @@
 	-# nesting four portraits in a container (second cohort)
 	.featured-president-group(class="col-md-4")
 		%div.row
-			.featured-president{:id => "fp-05", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal", :data => {:holdings => 30, :partners => 1, :blurb => "40th President (1981-89)"}}
+			.featured-president{:id => "fp-05", :class=>"fp-conceal fp-left fp-top", :data => {:holdings => 30, :partners => 1, :blurb => "40th President (1981-89)"}}
 				= link_to image_tag("presidents/reagan.jpg", :alt => "Ronald Reagan", :class => "featured-item img-responsive", :title => "Ronald Reagan"), "/?f%5Bpresident_facet%5D%5B%5D=Reagan%2C+Ronald%2C+1911-2004"
 				.featured-president-data
-			.featured-president{:id => "fp-06", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal", :data => {:holdings => 3, :partners => 1, :blurb => "6th President (1825-1829)"}}
+			.featured-president{:id => "fp-06", :class=>"fp-conceal fp-right fp-top", :data => {:holdings => 3, :partners => 1, :blurb => "6th President (1825-1829)"}}
 				= link_to image_tag("presidents/jq_adams.jpg", :alt => "John Quincy Adams", :class => "featured-item img-responsive", :title => "John Quincy Adams"), "/?f%5Bpresident_facet%5D%5B%5D=Adams%2C+John+Quincy%2C+1767-1848"
 				.featured-president-data
 		%div.row
-			.featured-president{:id => "fp-07", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal", :data => {:holdings => 2043, :partners => 3, :blurb => "19th President (1877-1881)"}}
+			.featured-president{:id => "fp-07", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal fp-left fp-bottom", :data => {:holdings => 2043, :partners => 3, :blurb => "19th President (1877-1881)"}}
 				= link_to image_tag("presidents/hayes.jpg", :alt => "Rutherford B. Hayes", :class => "featured-item img-responsive", :title => "Rutherford B. Hayes"), "/?f%5Bpresident_facet%5D%5B%5D=Hayes%2C+Rutherford+B.%2C+1822-1893"
 				.featured-president-data
-			.featured-president{:id => "fp-08", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal", :data => {:holdings => 100, :partners => 3, :blurb => "35th President (1961-63)"}}
+			.featured-president{:id => "fp-08", :class=>"col-md-6 col-sm-3 col-xs-4 fp-conceal fp-right fp-bottom", :data => {:holdings => 100, :partners => 3, :blurb => "35th President (1961-63)"}}
 				= link_to image_tag("presidents/kennedy-portrait.jpg", :alt => "John F. Kennedy", :class => "featured-item img-responsive", :title => "John F. Kennedy"), "/?f%5Bpresident_facet%5D%5B%5D=Kennedy%2C+John+F.+%28John+Fitzgerald%29%2C+1917-1963"
 				.featured-president-data
+		%div.featured-president-pane.fp-top.fp-left.fp-zoom#fp-05t
+			.featured-president-data
+		%div.featured-president-pane.fp-top.fp-right.fp-zoom#fp-06t
+			.featured-president-data
+		%div.featured-president-pane.fp-bottom.fp-left.fp-zoom#fp-07t
+			.featured-president-data
+		%div.featured-president-pane.fp-bottom.fp-right.fp-zoom#fp-08t
+			.featured-president-data
 	-# nesting four portraits in a container (third cohort)
 	.featured-president-group(class="col-md-4 row-md-2")
 		%div.row
