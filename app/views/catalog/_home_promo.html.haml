@@ -64,31 +64,55 @@
 
 
 %h3(id="partners") Meet our Partners
-.featured(class="col-md-8")
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-nara.gif", :alt => "Founders Online", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#founders"		
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-rotunda.gif", :alt => "Rotunda", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#rotunda"			
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-rooseveltCtr.jpg", :alt => "Theodore Roosevelt Center at Dickinson State University", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#trc"	
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-grantLibr.gif", :alt => "Ulysses S. Grant Presidential Library", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#usgpl"	
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-wilsonCtr.gif", :alt => "Wilson Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#wwp"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-sixthFloor.gif", :alt => "Sixth Floor Museum", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#sfm"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-massHist.gif", :alt => "Massachusetts Historical Society Adams Collection", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#mhs"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-hayes.gif", :alt => "Hayes Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#hpc"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#ohp"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-lincolnPapers.jpg", :alt => "Lincoln Papers", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#pal"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-indianaHist.jpg", :alt => "Indiana Historical Society", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#ihs"
-	.featured-partner(class="col-md-2 col-sm-3 col-xs-4")
-		= link_to image_tag("logo-trumanLWH.jpg", :alt => "Truman Little White House", :class => "featured-item img-responsive", :width => "120", :alt => ""), "/partners.html#tlwh"
+#partners-container.featured(class="col-md-8")
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-nara.png", :alt => "Founders Online", :class => "featured-item img-responsive", :width => ""), "/partners.html#founders"		
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-rotunda.png", :alt => "Rotunda", :class => "featured-item img-responsive", :width => "120"), "/partners.html#rotunda"			
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-rooseveltCtr.png", :alt => "Theodore Roosevelt Center at Dickinson State University", :class => "featured-item img-responsive", :width => "120"), "/partners.html#trc"	
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-us-grant-library.png", :alt => "Ulysses S. Grant Presidential Library", :class => "featured-item img-responsive", :width => "120"), "/partners.html#usgpl"	
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-wilsonCtr.png", :alt => "Wilson Center", :class => "featured-item img-responsive", :width => "120"), "/partners.html#wwp"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-sixth-fl-museum.png", :alt => "Sixth Floor Museum", :class => "featured-item img-responsive", :width => "120", :style => "background-color:white;"), "/partners.html#sfm"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-massHist.png", :alt => "Massachusetts Historical Society Adams Collection", :class => "featured-item img-responsive", :width => "120"), "/partners.html#mhs"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-hayes.png", :alt => "Hayes Center", :class => "featured-item img-responsive", :width => "120"), "/partners.html#hpc"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-millerCtr.png", :alt => "Miller Center", :class => "featured-item img-responsive", :width => "120"), "/partners.html#ohp"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-lincolnPapers.png", :alt => "Lincoln Papers", :class => "featured-item img-responsive", :width => "120"), "/partners.html#pal"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-indianaHist.png", :alt => "Indiana Historical Society", :class => "featured-item img-responsive", :width => "120"), "/partners.html#ihs"
+	.featured-partner(class="col-md-4 col-sm-4 col-xs-6")
+		.thumbnail_container
+			.thumbnail
+				= link_to image_tag("logo-trumanLWH.png", :alt => "Truman Little White House", :class => "featured-item img-responsive", :width => "120"), "/partners.html#tlwh"
 
 
 
