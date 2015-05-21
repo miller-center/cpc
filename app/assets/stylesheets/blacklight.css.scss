@@ -201,7 +201,12 @@ html, body {
 }
 
 .question {margin-top: 25px;}
-.partner-logo {float:right; text-align: center;}
+img.partner-logo {
+  float:right;
+  text-align: center;
+  max-height: 8em;
+  max-width: 8em;
+}
 .featured-note {float: right;}
 
 #footer {color: #eee;}
