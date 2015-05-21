@@ -262,7 +262,14 @@ module Blacklight::BlacklightHelperBehavior
     document = args.shift || options[:document]
 
     field = args.shift || options[:field]
-    truncate presenter(document).render_document_show_field_value(field, options), length: 2000
+    trim  = options[:trim]
+    # truncate if the field does not contain hyperlinks
+    field_val = presenter(document).render_document_show_field_value(field, options)
+    if trim
+      truncate field_val, length: 2000
+    else
+      field_val
+    end
   end
 
   ##

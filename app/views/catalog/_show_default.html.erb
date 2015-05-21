@@ -6,7 +6,9 @@
     	<h1 class="show-title-display"><%= render_document_show_field_value :document => document, :field => solr_fname %></h1>
     <% else -%>
     	<dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_document_show_field_label :field => solr_fname %></dt>
-	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= link_to_if(solr_fname.parameterize =~ /(alt_)*source/, (render_document_show_field_value :document => document, :field => solr_fname), (render_document_show_field_value :document => document, :field => solr_fname), {:target => "_blank"}) %></dd>
+      <% should_trim = false %>
+      <% should_trim = true unless field[:link_to_search]  %>
+	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= link_to_if(solr_fname.parameterize =~ /(alt_)*source/, (render_document_show_field_value :document => document, :field => solr_fname, :trim => should_trim), (render_document_show_field_value :document => document, :field => solr_fname), {:target => "_blank"}) %></dd>
     <% end -%>
 
     <% end -%>
