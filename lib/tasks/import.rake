@@ -2,6 +2,18 @@ require 'importers/oai_importer'
 require 'importers/xml_importer'
 
 namespace :import do
+  desc "imports single OAI file into Solr"
+  task :single_oai, [:filename, :arg2] => :environment do |t,args|
+    file =  args[:filename]
+    options = {}
+    options[:dry_run] = true if args[:arg1] =~ /dry/
+    options[:xml] = true if args[:arg2] =~ /xml/
+    options[:debug] = true if args[:arg2] =~ /debug/
+    raise RuntimeError, "#{file} is not a file!" unless File.file?(file.to_s)
+    importer = OaiImporter.new
+    importer.import(file, options)
+  end
+
   desc "loads OAI data into Solr; import:oai[dry_run] will dump data to stdout"
   task :oai, [:arg1, :arg2] => :environment do |t,args|
     if ENV['FILE']
