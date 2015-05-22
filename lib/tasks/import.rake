@@ -36,10 +36,13 @@ namespace :import do
   end
 
   desc "purges all records from Solr"
-  task purge: :environment do
+  task :purge, [:field,:value] => :environment do |t,args|
+    field = args[:field] || "*"
+    value = args[:value] || "*"
+    query = "#{field}:\"#{value}\""
     if Blacklight.solr.uri
-      puts "Deleting all records from #{Blacklight.solr.uri}"
-      Blacklight.solr.delete_by_query '*:*'
+      puts "Deleting all records matching \"#{query}\" from #{Blacklight.solr.uri}"
+      Blacklight.solr.delete_by_query query
       Blacklight.solr.commit
     end
   end
