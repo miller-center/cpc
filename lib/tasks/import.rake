@@ -14,6 +14,33 @@ namespace :import do
     importer.import(file, options)
   end
 
+  desc "imports UVA Press (Rotunda) collection data"
+  task uvapress: :environment do
+    # first purge all old records from this partner
+    field = "publisher_facet"
+    value = "University of Virginia Press"
+    Rake::Task["import:purge"].invoke("#{field}", "#{value}")
+    @files = [  "data/oai/ADMS-rotunda.oaidc.xml", "data/oai/BNFN-rotunda.oaidc.xml", "data/oai/JSMN-rotunda.oaidc.xml",
+                "data/oai/ARHN-rotunda.oaidc.xml", "data/oai/GEWN-rotunda.oaidc.xml", "data/oai/TSJN-rotunda.oaidc.xml" ]
+    @files.each do |fn|
+      Rake::Task["import:single_oai"].execute(filename: "#{fn}")
+    end
+  end
+
+  desc "imports Papers of Abraham Lincoln collection data"
+  task lincolnpapers: :environment do
+    # first purge all old records from this partner
+    field = "publisher_facet"
+    value = "The Papers of Abraham Lincoln"
+    Rake::Task["import:purge"].invoke("#{field}", "#{value}")
+    @files = [  "data/oai/lincoln-lc.xml", "data/oai/lincoln-rg.xml" ]
+    @files.each do |fn|
+      Rake::Task["import:single_oai"].execute(filename: "#{fn}")
+    end
+    # ensure removal of records without URLs
+    Rake::Task["import:trim"].invoke
+  end
+
   desc "loads OAI data into Solr; import:oai[dry_run] will dump data to stdout"
   task :oai, [:arg1, :arg2] => :environment do |t,args|
     if ENV['FILE']
@@ -40,6 +67,7 @@ namespace :import do
     field = args[:field] || "*"
     value = args[:value] || "*"
     query = "#{field}:\"#{value}\""
+    query = "*:*" if query == "*:\"*\""
     if Blacklight.solr.uri
       puts "Deleting all records matching \"#{query}\" from #{Blacklight.solr.uri}"
       Blacklight.solr.delete_by_query query
