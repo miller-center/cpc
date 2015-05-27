@@ -1,3 +1,4 @@
+require 'importers/trcenter_importer'
 require 'importers/oai_importer'
 require 'importers/xml_importer'
 
@@ -39,6 +40,19 @@ namespace :import do
     end
     # ensure removal of records without URLs
     Rake::Task["import:trim"].invoke
+  end
+
+  desc "imports Theodore Roosevelt Center collection data (uses custom importer)"
+  task trcenter: :environment do
+    # first purge all old records from this partner
+    field = "publisher_facet"
+    value = "Theodore Roosevelt Center"
+    Rake::Task["import:purge"].invoke("#{field}", "#{value}")
+    @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml" ]
+    importer = TRCenterImporter.new
+    @files.each do |fn|
+      importer.import(fn)
+    end
   end
 
   desc "loads OAI data into Solr; import:oai[dry_run] will dump data to stdout"
