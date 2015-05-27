@@ -33,7 +33,7 @@ namespace :import do
     field = "publisher_facet"
     value = "The Papers of Abraham Lincoln"
     Rake::Task["import:purge"].invoke("#{field}", "#{value}")
-    @files = [  "data/oai/lincoln-lc.xml", "data/oai/lincoln-rg.xml" ]
+    @files = [  "data/oai/lincoln-lc.xml", "data/oai/lincoln-rg-a.xml" , "data/oai/lincoln-rg-b.xml" ]
     @files.each do |fn|
       Rake::Task["import:single_oai"].execute(filename: "#{fn}")
     end
