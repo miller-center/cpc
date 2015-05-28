@@ -51,7 +51,7 @@ namespace :import do
     @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml" ]
     importer = TRCenterImporter.new
     @files.each do |fn|
-      importer.import(fn)
+      importer.import(fn, { mutate: :coverage_facet } )
     end
   end
 

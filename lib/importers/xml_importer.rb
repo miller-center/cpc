@@ -48,7 +48,7 @@ class XmlImporter
   def import(file, options = {})
     dry_run = options[:dry_run] || false
     @debug = true if options[:debug]
-
+    raise RuntimeError, "Dumping mappings #{@mappings}" if options[:dump_map]
     f = File.open(file)
     doc = Nokogiri::XML(f)
     f.close
@@ -63,12 +63,13 @@ class XmlImporter
         response = display_record_node(record, options)
         case response
         when String
-          STDERR.puts string
+          ap string
         else 
           STDOUT.puts response.inspect
         end
       end
       pbar.inc unless options[:dry_run]
+      break if options[:dry_run] == :one_time
     end
 
     unless dry_run
