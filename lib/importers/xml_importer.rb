@@ -24,6 +24,9 @@ require 'rsolr'
 # +filters+ - (optional) map from solr field names to filter functions.
 #             See description of +default_filter+
 ##
+class BadDateExeception < StandardError
+end
+
 class XmlImporter
   attr_accessor :record_delimiter,
                 :namespaces,
@@ -258,7 +261,10 @@ class XmlImporter
       begin
         puts "Case 2 #{field_val}" if @debug
         if field_val.to_datetime # will raise exception unless true
-          field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+          integer_val = field_val.to_i
+          str         = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+          raise BadDateExecption, "Bad date processing of #{field_val}" if str.year != integer_val
+          field_val = str
         end
       rescue
         field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
