@@ -55,6 +55,17 @@ namespace :import do
     end
   end
 
+  desc "imports Monroe Papers collection (uses modified mappings)"
+  task monroepapers: :environment do
+    @files = [ "data/oai/monroe-papers.oaidc.xml" ]
+    importer = OaiImporter.new
+    importer.mappings.delete("dc:relation")
+    importer.mappings["dc:relation[@type='president']"]= :president_t
+    @files.each do |fn|
+      importer.import(fn)
+    end
+  end
+
   desc "loads OAI data into Solr; import:oai[dry_run] will dump data to stdout"
   task :oai, [:arg1, :arg2] => :environment do |t,args|
     if ENV['FILE']
