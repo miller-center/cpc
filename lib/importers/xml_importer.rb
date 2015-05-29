@@ -33,6 +33,7 @@ class XmlImporter
                 :mappings_prefix,
                 :mappings,
                 :default_filter,
+                :options,
                 :filters
 
   def initialize
@@ -41,6 +42,7 @@ class XmlImporter
     @mappings_prefix = ''
     @mappings = HashWithIndifferentAccess.new
     @default_filter = self.class.strip_whitespace_filter
+    @options = {}
     @filters = HashWithIndifferentAccess.new
 
     yaml_path = File.expand_path('../../../config/solr.yml', __FILE__)
@@ -49,6 +51,7 @@ class XmlImporter
   end
 
   def import(file, options = {})
+    @options = options
     dry_run = options[:dry_run] || false
     @debug = true if options[:debug]
     raise RuntimeError, "Dumping mappings #{@mappings}" if options[:dump_map]
@@ -257,7 +260,7 @@ class XmlImporter
       rescue
         field_val = Date.new(field_val.to_i).strftime('%Y-%m-%dT%H:%M:%SZ')
       end
-    elsif docfield == :date && field_val.to_i > 0
+    elsif docfield == :date && field_val.to_i > 1492
       begin
         puts "Case 2 #{field_val}" if @debug
         if field_val.to_datetime # will raise exception unless true
@@ -272,8 +275,23 @@ class XmlImporter
     elsif docfield == :date && field_val =~ /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i && field_val.to_datetime.year > 0
       begin
         puts "Case 3 #{field_val}" if @debug
-        if field_val.to_datetime.year > 1492 # avoid insane values
-          field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+        regex = /(\d{1,2})\s+((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*(\d{4})/i # e.g., "3 January  (written 1824 or 1825) "
+        if field_val =~ regex
+          day,month,mon,year = regex.match(field_val)[1..4]
+          date = Date.strptime("#{year}-#{mon}-#{day}", '%Y-%b-%d')
+          date.nil? ? field_val : field_val = date.to_s
+        elsif field_val =~ /((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*(\d{4})/i
+          regex =  /((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*(\d{4})/i
+          month,mon,year = regex.match(field_val)[1..3]
+          date = Date.strptime("#{year}-#{mon}", '%Y-%b')
+          date.nil? ? field_val : field_val = date.to_s
+        elsif field_val.to_datetime.year > 1492 && field_val.to_datetime.year <= Date.today.year # avoid insane values
+          if field_val !~ field_val.to_datetime.year # something went wrong
+            docfield  = :pub_date
+            field_val
+          else # ok
+            field_val = field_val.to_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
+          end
         else
           docfield  = :pub_date
           field_val
@@ -288,9 +306,13 @@ class XmlImporter
       rescue
         field_val 
       end
+    elsif docfield == :date && field_val =~ /^n\.d\.\s+\d{4}$/ # e.g., "n.d. 1798"
+      puts "Case 6 #{field_val}" if @debug
+      year = field_val.match(/^n\.d\.\s+(\d{4})$/)[1]
+      year.to_i > 1492 ? field_val = year : docfield = :pub_date
     else
       if docfield == :date
-        puts "Case 5 #{field_val} new docfield = :pub_date" if @debug
+        puts "Case 6 #{field_val} new docfield = :pub_date" if @debug
         docfield = :pub_date # Solr typed as string, will handle strings that fail ISO 8601 validation 
       end
     end
