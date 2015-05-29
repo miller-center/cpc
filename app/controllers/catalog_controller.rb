@@ -114,6 +114,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
     config.add_show_field 'author_display', :label => 'Author'
     config.add_show_field 'author_vern_display', :label => 'Author'
+    config.add_show_field 'pub_date', :label => 'Date'
     config.add_show_field 'description', :label => 'Description'
     config.add_show_field 'subject_t', :label => 'Subject', :link_to_search => 'subject_topic_facet'
     config.add_show_field 'format', :label => 'Format'
@@ -134,6 +135,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'rights', :label => 'Rights'
     config.add_show_field 'source', :label => 'Source'
     config.add_show_field 'alt_source_t', :label => 'Enhanced Source'
+    config.add_show_field 'alt_source_portal_t', :label => 'Resource Link'
     config.add_show_field 'author_addl_t', :label => 'Additional Authors'
 
 

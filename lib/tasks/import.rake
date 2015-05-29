@@ -59,8 +59,11 @@ namespace :import do
   task monroepapers: :environment do
     @files = [ "data/oai/monroe-papers.oaidc.xml" ]
     importer = OaiImporter.new
+    # overriding mappings for this dataset
     importer.mappings.delete("dc:relation")
-    importer.mappings["dc:relation[@type='president']"]= :president_t
+    importer.mappings.delete("dc:source[not(@type='enhanced')]")
+    importer.mappings["dc:source[@type='url']"] = :alt_source_portal_t
+    importer.mappings["dc:relation[@type='president']"] = :president_t
     @files.each do |fn|
       importer.import(fn)
     end
