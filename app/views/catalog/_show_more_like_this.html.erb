@@ -1,14 +1,6 @@
 <li class="more_like_this_document">
   <span class="mlt_title"><%= link_to_document document, :label=>document_show_link_field(document) %></span>
-  <% if document.id %>
-    <% length = 165 %>
-    <% if document["title_display"] %>
-      <% length -= document["title_display"].to_s.length  %>
-    <% else %>
-      <% length -= document["id"].to_s.length  %>
-    <% end %>
-    <% if length > 1 %>
-      <span class="mlt_description"><%= document["description"].join('; ').truncate(length) unless document["description"].nil? %></span>
-    <% end %>
+  <% if ! document["description"].nil? %>
+    <span class="mlt_description"><%= description_excerpt document %></span>
   <% end %>
 </li>

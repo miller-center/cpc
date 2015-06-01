@@ -588,4 +588,38 @@ module Blacklight::BlacklightHelperBehavior
   def opensearch_description_tag title, href
     tag :link, href: href, title: title, type: "application/opensearchdescription+xml", rel: "search"
   end
+
+  ##
+  # CPC-specific helpers
+  #
+  def date_format_helper args
+    val = args[:document][args[:field]]
+    if val
+      dt = DateTime.parse val
+      result = dt.strftime("%F")
+      if result != args[:document][:pub_date] && ! args[:document][:pub_date].empty?
+        args[:document][:pub_date]
+      else
+        result
+      end
+    else
+      nil
+    end
+  end
+
+  # used in the _show_more_like_this partial to describe documents
+  # builds exerpt taking into account title/id that will prepend it
+  def description_excerpt document
+    length = 165
+    if document["title_display"]
+      length -= document["title_display"].to_s.length
+    else
+      length -= document["id"].to_s.length
+    end
+    if length > 1 && ! document["description"].nil?
+      document["description"].join('; ').truncate(length)
+    else
+      ""
+    end
+  end
 end
