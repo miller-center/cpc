@@ -39,6 +39,8 @@ class CatalogController < ApplicationController
         :"mlt.maxqt" => 3,
         :q => '{!raw f=id v=$id}' 
     }
+    # More Like This params as they appear to Solr:
+    # mlt=true&mlt.fl='title_t,description,author_t'&mlt.mindt=1&mlt.mintf=1&mlt.maxqt=3
 
     # solr field configuration for search results/index views
     config.index.title_field = 'title_display'
