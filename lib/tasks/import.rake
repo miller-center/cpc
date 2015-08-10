@@ -16,13 +16,19 @@ namespace :import do
   end
 
   desc "imports UVA Press (Rotunda) collection data"
-  task uvapress: :environment do
+  task :uvapress, [:filename] => :environment do |t,args|
     # first purge all old records from this partner
     field = "publisher_facet"
     value = "University of Virginia Press"
-    Rake::Task["import:purge"].invoke("#{field}", "#{value}")
-    @files = [  "data/oai/ADMS-rotunda.oaidc.xml", "data/oai/BNFN-rotunda.oaidc.xml", "data/oai/JSMN-rotunda.oaidc.xml",
-                "data/oai/ARHN-rotunda.oaidc.xml", "data/oai/GEWN-rotunda.oaidc.xml", "data/oai/TSJN-rotunda.oaidc.xml" ]
+    @files = []
+    if args[:filename] && File.exist?(args[:filename].to_s)
+      @files << args[:filename]
+    else
+      Rake::Task["import:purge"].invoke("#{field}", "#{value}")
+      @files = [  "data/oai/ADMS-rotunda.oaidc.xml", "data/oai/BNFN-rotunda.oaidc.xml", 
+                  "data/oai/JKSN-rotunda.oaidc.xml", "data/oai/JSMN-rotunda.oaidc.xml",
+                  "data/oai/ARHN-rotunda.oaidc.xml", "data/oai/GEWN-rotunda.oaidc.xml", "data/oai/TSJN-rotunda.oaidc.xml" ]
+    end
     @files.each do |fn|
       Rake::Task["import:single_oai"].execute(filename: "#{fn}")
     end
@@ -76,6 +82,12 @@ namespace :import do
     else
       files = Dir["#{Rails.root}/data/oai/*.xml"]
     end
+    # just do the files without their own import tasks
+    files = [ "bultema-williams.xml", "hayes.xml", "ihs-bharrison.oaidc.xml", "ihs-whharrison.oaidc.xml", 
+              "julia-grant-world-tour.xml", "mhsoai_adams.xml", "miller_center_poh.xml", "miller_center_ps.xml",
+              "sixth_floor.xml", "truman_lwh.xml", "usgrant.xml", "usgrant_papers.xml", "wilson.xml", "wilson_speeches.xml"
+            ]
+    files.map! { |name| "./data/oai/#{name}" }
 
     options = {}
     options[:dry_run] = true if args[:arg1] =~ /dry/
