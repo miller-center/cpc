@@ -15,6 +15,18 @@ namespace :import do
     importer.import(file, options)
   end
 
+  desc "imports Vincent Voice Library collection data"
+  task :vvl do
+    @files = [ "data/oai/vvl.oaidc.xml" ]
+    importer = OaiImporter.new
+    # overriding mappings for this dataset
+    importer.mappings.delete("dc:type")
+    importer.mappings["dc:type[1]"] = :type
+    @files.each do |fn|
+      importer.import(fn)
+    end
+  end
+
   desc "imports UVA Press (Rotunda) collection data"
   task :uvapress, [:filename] => :environment do |t,args|
     # first purge all old records from this partner
