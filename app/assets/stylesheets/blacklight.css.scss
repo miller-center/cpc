@@ -201,12 +201,30 @@ html, body {
 }
 
 .question {margin-top: 25px;}
-img.partner-logo {
-  float:right;
-  text-align: center;
-  max-height: 8em;
-  max-width: 8em;
+
+.partner-description {
+  min-height: 12em;
+  img.partner-logo {
+    float:right;
+    text-align: center;
+    height: auto;
+    width: auto;
+    min-width: 12em;
+    max-height: 10em;
+    max-width: 16em;
+    margin: 0 0 0.5em 0.5em;
+  }
+  img.partner-logo.square {
+    height: 9em;
+    width: 9em;
+    min-width: 9em;
+  }
+  img.square.bigger {
+    min-width: 11em;
+    min-height: 11em;
+  }
 }
+
 .featured-note {float: right;}
 
 #footer {color: #eee;}
