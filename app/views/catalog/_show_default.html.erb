@@ -8,7 +8,7 @@
     	<dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_document_show_field_label :field => solr_fname %></dt>
       <% should_trim = false %>
       <% should_trim = true unless field[:link_to_search]  %>
-	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= link_to_if(solr_fname.parameterize =~ /(alt_)*source/, (render_document_show_field_value :document => document, :field => solr_fname, :trim => should_trim), (render_document_show_field_value :document => document, :field => solr_fname), {:target => "_blank"}) %></dd>
+	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= link_to_if(solr_fname.parameterize =~ /((alt_)*source|rights)/, (render_document_show_field_value :document => document, :field => solr_fname, :trim => should_trim), (render_document_show_field_value :document => document, :field => solr_fname), {:target => "_blank"}) %></dd>
     <% end -%>
 
     <% end -%>
