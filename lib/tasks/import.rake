@@ -27,6 +27,22 @@ namespace :import do
     end
   end
 
+  desc "imports Vincent Voice Library collection data"
+  task :nara do
+    @files = Dir.glob("data/oai/nara/*/*.oaidc.xml")
+    importer = OaiImporter.new
+    # override mappings for this dataset here
+    importer.mappings.delete("dc:type")
+    importer.mappings["dc:type[1]"] = :type
+    importer.mappings.delete("dc:source")
+    importer.mappings.delete("dc:source[not(@type='enhanced')]")
+    importer.mappings["dc:source[1]"] = :source
+
+    @files.each do |fn|
+      importer.import(fn)
+    end
+  end
+
   desc "imports UVA Press (Rotunda) collection data"
   task :uvapress, [:filename] => :environment do |t,args|
     # first purge all old records from this partner
