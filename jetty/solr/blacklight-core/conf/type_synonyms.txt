@@ -1,0 +1,6 @@
+# Synonyms for various types of media
+
+document, page, website, transcription, manuscript, presentation, slideshow
+video, mp4
+image, jpeg, jpg
+audio, mp3
