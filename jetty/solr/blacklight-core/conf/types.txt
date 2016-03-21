@@ -1,0 +1,6 @@
+# Allowed types for type_facet
+
+document
+audio
+video
+image
