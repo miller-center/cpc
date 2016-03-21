@@ -7,9 +7,18 @@ namespace :import do
   task :single_oai, [:filename, :arg2] => :environment do |t,args|
     file =  args[:filename]
     options = {}
-    options[:dry_run] = true if args[:arg1] =~ /dry/
-    options[:xml] = true if args[:arg2] =~ /xml/
-    options[:debug] = true if args[:arg2] =~ /debug/
+    if args[:arg2] =~ /dry/
+      options[:dry_run] = true
+      puts "Dry Run...." 
+    end
+    if args[:arg2] =~ /xml/
+      options[:xml] = true
+      puts "Showing Solr XML...." 
+    end
+    if args[:arg2] =~ /debug/
+      options[:debug] = true
+      puts "Display Debug Info...."
+    end
     raise RuntimeError, "#{file} is not a file!" unless File.file?(file.to_s)
     importer = OaiImporter.new
     importer.import(file, options)
@@ -27,7 +36,26 @@ namespace :import do
     end
   end
 
-  desc "imports Vincent Voice Library collection data"
+  desc "imports Massachusetts Historical Society (Adams) collection data"
+  task :mhs do
+    # first purge all old records from this partner
+    field = "publisher_facet"
+    value = "Massachusetts Historical Society"
+    Rake::Task["import:purge"].invoke("#{field}", "#{value}")
+
+    @files = [ "data/oai/mhs.oaidc.xml" ]
+    importer = OaiImporter.new
+    # overriding mappings for this dataset
+    importer.mappings.delete("dc:type")
+    importer.mappings["dc:type[1]"] = :type
+    importer.mappings.delete("dc:rights")
+    importer.mappings["dc:rights[1]"] = :rights
+    @files.each do |fn|
+      importer.import(fn)
+    end
+  end
+
+  desc "imports NARA Libraries (OPA) collection data"
   task :nara do
     @files = Dir.glob("data/oai/nara/*/*.oaidc.xml")
     importer = OaiImporter.new
