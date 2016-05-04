@@ -137,6 +137,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'rights', :label => 'Rights'
     config.add_show_field 'source', :label => 'Source'
     config.add_show_field 'alt_source_t', :label => 'Enhanced Source'
+    config.add_show_field 'alt_source_addnl_t', :label => 'Additional URL'
     config.add_show_field 'alt_source_portal_t', :label => 'Source'
     config.add_show_field 'author_addl_t', :label => 'Additional Authors'
 

@@ -110,7 +110,7 @@ namespace :import do
     field = "publisher_facet"
     value = "Theodore Roosevelt Center"
     Rake::Task["import:purge"].invoke("#{field}", "#{value}")
-    @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml" ]
+    @files = [ "data/oai/cpc_manuscript.xml", "data/oai/cpc_motion.xml", "data/oai/cpc_prints.xml" ]
     importer = TRCenterImporter.new
     @files.each do |fn|
       importer.import(fn, { mutate: :coverage_facet } )
@@ -126,6 +126,18 @@ namespace :import do
     importer.mappings.delete("dc:source[not(@type='enhanced')]")
     importer.mappings["dc:source[@type='url']"] = :alt_source_portal_t
     importer.mappings["dc:relation[@type='president']"] = :president_t
+    @files.each do |fn|
+      importer.import(fn)
+    end
+  end
+
+  desc "imports Lincoln Financial book collection (uses modified mappings)"
+  task lincolnbooks: :environment do
+    @files = [ "data/oai/lincoln_financial_book_collection_a.oaidc.xml",
+               "data/oai/lincoln_financial_book_collection_b.oaidc.xml" ]
+    importer = OaiImporter.new
+    # overriding mappings for this dataset
+    importer.mappings["dc:source[@type='additional']"] = :alt_source_addnl_t
     @files.each do |fn|
       importer.import(fn)
     end

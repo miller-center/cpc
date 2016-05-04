@@ -30,7 +30,7 @@ class OaiImporter < XmlImporter
       "dc:contributor" => :contributor,
       "dc:provenance" => :provenance,
       "dc:subject" => :subject_t,
-      "dc:source[not(@type='enhanced')]" => :source,
+      "dc:source[not(@type='enhanced') and not(@type='additional')]" => :source,
       "dc:source[@type='enhanced']" => :alt_source_t,
       "dc:type" => :type,
       "dc:language" => :language,
