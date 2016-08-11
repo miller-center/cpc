@@ -1,11 +1,20 @@
 require 'importers/trcenter_importer'
 require 'importers/oai_importer'
 require 'importers/xml_importer'
+require 'nokogiri'
 
 namespace :import do
   desc "imports single OAI file into Solr"
   task :single_oai, [:filename, :arg2] => :environment do |t,args|
     file =  args[:filename]
+    # file sanity test
+    begin
+      test_doc = Nokogiri::XML(File.open(file)) { |config| config.strict }
+    rescue e
+      puts "Error: check your XML file #{file}"
+      puts e
+      exit
+    end
     options = {}
     if args[:arg2] =~ /dry/
       options[:dry_run] = true
