@@ -607,6 +607,16 @@ module Blacklight::BlacklightHelperBehavior
     end
   end
 
+  def wrap_url_in_string_helper str
+    if str.acts_like_string?
+      str.scan(URI.regexp(['http', 'https'])) do |*matches| 
+        substr=$&
+        str = str.gsub(substr, '<a target="_new">'+substr+'</a>')
+      end
+    end
+    str
+  end
+
   # used in the _show_more_like_this partial to describe documents
   # builds exerpt taking into account title/id that will prepend it
   def description_excerpt document
