@@ -313,3 +313,43 @@ img{
   max-height:100%;
   max-width:100%;
 }
+
+// used on publicity.html
+div.tweet {
+  width: 42%; 
+  float:left; 
+  margin-right: 1%; 
+  margin-bottom: 25px;
+  font-size: 14px; 
+  box-shadow: 0 0 15px #BFE0EC; 
+  padding: 15px 25px 35px 25px; 
+  border: 1px solid #ccc;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+  
+div.tweet:hover {
+  box-shadow: 0 0 25px 3px #ccc;
+  transition: all 100ms ease-out;}
+
+div.tweet iframe {display:block; float:right; margin-top: 15px;}
+
+div.tweet.one {
+  background-image: url(asset_path('cpc/whitehouse-sm.jpg'));
+  }
+  
+div.tweet.two {
+  background-image: url(asset_path('cpc/blocks-sm.png'));
+  }
+  
+div.tweet.three {
+  background-image: url(asset_path('cpc/hayes-sm.jpg'));
+  }
+  
+div.tweet.four {
+  background-image: url(asset_path('cpc/microphone-sm.jpg'));
+  } 
+
+div.tweet.five {
+  background-image: url(asset_path('cpc/crowd-sm.jpg'));
+  }
