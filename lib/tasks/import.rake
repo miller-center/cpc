@@ -65,16 +65,25 @@ namespace :import do
   end
 
   desc "imports NARA Libraries (OPA) collection data"
-  task :nara do
-    @files = Dir.glob("data/oai/nara/*/*.oaidc.xml")
+  task :nara, [:filename] => :environment do |t,args|
+    @files = []
+    if args[:filename] && File.exist?(args[:filename].to_s)
+      @files << args[:filename]
+    else
+      @files = Dir.glob("data/oai/nara/*/*.oaidc.xml")
+		end
     importer = OaiImporter.new
+		
     # override mappings for this dataset here
+    importer.mappings.delete("dc:publisher")
+    importer.mappings["dc:publisher[1]"] = :publisher
     importer.mappings.delete("dc:type")
     importer.mappings["dc:type[1]"] = :type
     importer.mappings.delete("dc:source")
     importer.mappings.delete("dc:source[not(@type='enhanced')]")
+    importer.mappings.delete("dc:source[not(@type='enhanced') and not(@type='additional')]")
     importer.mappings["dc:source[1]"] = :source
-
+		
     @files.each do |fn|
       importer.import(fn)
     end
@@ -119,7 +128,7 @@ namespace :import do
     field = "publisher_facet"
     value = "Theodore Roosevelt Center"
     Rake::Task["import:purge"].invoke("#{field}", "#{value}")
-    @files = [ "data/oai/cpc_manuscript.xml", "data/oai/cpc_motion.xml", "data/oai/cpc_prints.xml" ]
+    @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml" ]
     importer = TRCenterImporter.new
     @files.each do |fn|
       importer.import(fn, { mutate: :coverage_facet } )
