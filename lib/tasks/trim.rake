@@ -9,11 +9,15 @@ namespace :import do
     end
 
     if Blacklight.solr.uri
-      puts "Deleting selected records from #{Blacklight.solr.uri}"
-      @trim_list.each do |id|
-        Blacklight.solr.delete_by_query "id:#{id}"
+      puts "Deleting #{@trim_list.length} records from #{Blacklight.solr.uri}"
+      puts Rails.env
+      @trim_list.each_with_index do |id,index|
+	if index % 1000 == 0 then puts "record id #{index}: #{id}" end 
+        Blacklight.solr.delete_by_query 'id:"'+id+'"'
       end
+      puts "Committing changes..."
       Blacklight.solr.commit
+      puts "Done!"
     end
   end
 
