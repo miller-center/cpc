@@ -227,6 +227,14 @@ html, body {
 
 .featured-note {float: right;}
 
+.figure figurecaption {
+  display: block;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%
+}
+
 #footer {color: #eee;}
 #footer a {color: #bbb;}
 #footer-highlight, #footer-highlight a {color: #c96f27; font-weight: bold;}
