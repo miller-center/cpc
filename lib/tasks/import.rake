@@ -128,7 +128,7 @@ namespace :import do
     field = "publisher_facet"
     value = "Theodore Roosevelt Center"
     Rake::Task["import:purge"].invoke("#{field}", "#{value}")
-    @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml" ]
+    @files = [ "data/oai/trc_manuscript.xml", "data/oai/trc_motion.xml", "data/oai/trc_prints.xml", "data/oai/trc_harvard.xml" ]
     importer = TRCenterImporter.new
     @files.each do |fn|
       importer.import(fn, { mutate: :coverage_facet } )

@@ -7,6 +7,8 @@ class TRCenterImporter < OaiImporter
 
     # remove inherited mappings
     @mappings.delete("dc:source[not(@type='enhanced')]")
+    @mappings.delete("dc:source[not(@type='enhanced') and not(@type='additional')]")
+    @mappings.delete("dc:source")
     @mappings.delete("dc:publisher")
     @mappings.delete("dc:relation")
 
