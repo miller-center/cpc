@@ -61,7 +61,7 @@ class XmlImporter
 
     records = doc.xpath(record_delimiter, namespaces)
     puts "Importing #{records.length} records from #{file}"
-    pbar = ProgressBar.new("importing", records.length) unless options[:dry_run]
+    pbar = ProgressBar.create(title: "Import: ", total: records.length) unless options[:dry_run]
     records.each do |record|
       if ! dry_run
         import_record_node(record, options)
@@ -74,7 +74,7 @@ class XmlImporter
           STDOUT.puts response.inspect
         end
       end
-      pbar.inc unless options[:dry_run]
+      pbar.increment unless options[:dry_run]
       break if options[:dry_run] == :one_time
     end
 
