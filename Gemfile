@@ -72,3 +72,6 @@ gem 'blacklight-sitemap', '~> 2.0.0'
 Dir.glob(File.join(File.dirname(__FILE__), 'data', '**', "Gemfile")) do |gemfile|
     eval(IO.read(gemfile), binding)
 end
+
+# Added at 2018-05-11 16:21:28 -0400 by imls:
+gem "progressbar", "~> 1.9.0"
