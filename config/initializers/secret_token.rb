@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-CpcBlacklight::Application.config.secret_key_base = 'fc92e3c25f3541dc40a0aed4c374ac6111d5e904811a15bcd54b7648b2685522aa969bc958474fc261cb3ed96219ff4e1d305f6d6839c8113531b867867abc30'
+CpcBlacklight::Application.config.secret_key_base = ''
