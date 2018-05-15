@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  size: MyString
+  precisesize: MyString
+  allpres: false
+  organization_id: 
+
+two:
+  name: MyString
+  description: MyString
+  size: MyString
+  precisesize: MyString
+  allpres: false
+  organization_id: 
