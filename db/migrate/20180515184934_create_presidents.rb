@@ -16,7 +16,7 @@ class CreatePresidents < ActiveRecord::Migration
       t.string :marriage
       t.string :children
       t.datetime :inaugurationdate
-      t.int :number
+      t.integer :number
       t.string :writings
 
       t.timestamps
