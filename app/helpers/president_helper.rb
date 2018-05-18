@@ -1,0 +1,2 @@
+module PresidentHelper
+end
