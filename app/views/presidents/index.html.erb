@@ -1,0 +1,23 @@
+<h1>Listing presidents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presidents.each do |president| %>
+      <tr>
+        <td><%= link_to simple_format(president.title), president %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New President', new_president_path %>

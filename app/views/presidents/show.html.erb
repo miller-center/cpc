@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<%# <%= link_to 'Edit', edit_president_path(@president) %> |
+<%= link_to 'Back to Presidents', presidents_path %>
+<p> </p> <%# spacer paragraph %>
+
+
+<p>Id: <%= @president.id %></p>
+<p>Name: <%= @president.title %></p>
+<p><span>Education: <%= simple_format(@president.education) %></span></p>
+<p>Number: <%= @president.number %></p>
+<p>Nicknames: <%= @president.nicknames %></p>
+
+<h2 style="padding: 1em;">Known Collections: </h2>
+  <% if ! @president.collections.empty? %>
+    <ul>
+    <% @president.collections.map do |p| %>
+      <li><%= link_to simple_format(p.name), p %>&nbsp;</li>
+    <% end %>
+    </ul>
+  <% else %>
+    <span>none</span>
+  <% end %>

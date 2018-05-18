@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<%# <%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back to Collections', collections_path %>
+<p> </p> <%# spacer paragraph %>
+
+
+<p>Id: <%= @collection.id %></p>
+<p>Collection Title: <%= @collection.name %></p>
+<p>Description: <%= simple_format(@collection.description) %></p>
+<p>Approximate Size: <%= @collection.size %></p>
+<p>Precise Size: <%= @collection.precisesize %></p>
+<p>Presidents:
+  <% @collection.presidents.map do |p| %>
+    <span><%= link_to t(p.title), p %>&nbsp;</span>
+  <% end %>
+</p>
+<p>Organization: <%= link_to t(@collection.organization.name), @collection.organization %></p>

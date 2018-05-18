@@ -7,6 +7,13 @@ CpcBlacklight::Application.routes.draw do
   get "/advanced" => "advanced#index"
   get "/:page" => "static#show"
 
+  # CPC Collection Catalog
+  scope "/research" do
+    resources :collections
+    resources :organizations
+    resources :presidents
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

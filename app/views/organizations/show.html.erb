@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<%# <%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back to Organizations', organizations_path %>
+<p> </p> <%# spacer paragraph %>
+
+<p>Id: <%= @organization.id %></p>
+<p>Name: <%= @organization.name %></p>
+<p>Description: <%= simple_format(@organization.description) %></p>
+<p>Address: <%= simple_format(@organization.address) %></p>
+<h2 style="padding: 1em;">Known Collections: </h2>
+  <% if ! @organization.collections.empty? %>
+    <ul>
+    <% @organization.collections.map do |p| %>
+      <li><%= link_to simple_format(p.name), p %>&nbsp;</li>
+    <% end %>
+    </ul>
+  <% else %>
+    <span>none</span>
+  <% end %>
+
+

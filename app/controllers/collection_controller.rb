@@ -1,2 +1,0 @@
-class CollectionController < ApplicationController
-end
