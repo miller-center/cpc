@@ -2,6 +2,15 @@ namespace :legacy do
   require 'csv'
   require 'date'
 
+  desc "Adds all Collections, Orgs, Presidents to the database"
+  task :create_all do
+    Rake::Task["legacy:create_collections"].invoke
+    Rake::Task["legacy:create_orgs"].invoke
+    Rake::Task["legacy:create_presidents"].invoke
+    Rake::Task["legacy:link_colls_to_pres"].invoke
+    Rake::Task["legacy:link_colls_to_orgs"].invoke
+  end
+
   desc "Creates Collections objects from ExpressionEngine csv data file"
   task :create_collections, [:filename] => :environment do |t,args|
     # get the data file
