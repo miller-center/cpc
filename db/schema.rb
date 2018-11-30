@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104183013) do
+ActiveRecord::Schema.define(version: 20180518000650) do
+
+  create_table "Collections_Presidents", id: false, force: true do |t|
+    t.integer "collection_id", null: false
+    t.integer "president_id",  null: false
+  end
+
+  add_index "Collections_Presidents", ["collection_id", "president_id"], name: "index_Collections_Presidents_on_collection_id_and_president_id"
+  add_index "Collections_Presidents", ["president_id", "collection_id"], name: "index_Collections_Presidents_on_president_id_and_collection_id"
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",       null: false
@@ -24,6 +32,59 @@ ActiveRecord::Schema.define(version: 20141104183013) do
   end
 
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
+
+  create_table "collections", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "size"
+    t.string   "precisesize"
+    t.boolean  "allpres"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collections", ["organization_id"], name: "index_collections_on_organization_id"
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.text     "contact_info"
+    t.text     "onboarding"
+    t.text     "notes_dates"
+    t.string   "notes_text"
+    t.text     "update_period"
+    t.text     "api_known"
+    t.text     "api_url"
+  end
+
+  create_table "presidents", force: true do |t|
+    t.string   "title"
+    t.string   "fullname"
+    t.string   "lastname"
+    t.datetime "birthdate"
+    t.datetime "deathdate"
+    t.string   "birthplace"
+    t.string   "deathplace"
+    t.string   "education"
+    t.string   "religion"
+    t.string   "career"
+    t.string   "party"
+    t.string   "nicknames"
+    t.string   "marriage"
+    t.string   "children"
+    t.datetime "inaugurationdate"
+    t.integer  "number"
+    t.string   "writings"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "enddate"
+  end
 
   create_table "searches", force: true do |t|
     t.text     "query_params"

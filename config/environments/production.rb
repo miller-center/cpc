@@ -79,5 +79,5 @@ CpcBlacklight::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Change this to your Google Analytics site ID
-  config.google_analytics_id = "UA-XXXXXXX-XX"
+  config.google_analytics_id = "UA-291080-8"
 end

@@ -107,6 +107,7 @@
          subject_addl_t^50
          title_series_unstem_search^25
          title_series_t^10
+         contributor^100
          description^10
          isbn_t
          text
@@ -132,6 +133,7 @@
          subject_addl_t^500
          title_series_unstem_search^250
          title_series_t^100
+         contributor^100
          description^10
          text^10
        </str>

@@ -7,6 +7,7 @@ CpcBlacklight::Application.routes.draw do
   get "/advanced" => "advanced#index"
   get "/:page" => "static#show"
 
+  get "/research/" => "collections#index"
   # CPC Collection Catalog
   scope "/research" do
     resources :collections
