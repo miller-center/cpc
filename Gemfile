@@ -76,3 +76,7 @@ end
 
 # Added at 2018-05-11 16:21:28 -0400 by imls:
 gem "progressbar", "~> 1.9.0"
+
+# Added 2018-12-03 14:05:00 by mefron:
+#gem "sprockets", ">= 2.12.5"
+#gem "actionpack", ">= 4.2.5.1"
