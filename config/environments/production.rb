@@ -80,4 +80,7 @@ CpcBlacklight::Application.configure do
 
   # Change this to your Google Analytics site ID
   config.google_analytics_id = "UA-291080-8"
+
+  # turn off deprecation warnings
+  ActiveSupport::Deprecation.silenced = true
 end

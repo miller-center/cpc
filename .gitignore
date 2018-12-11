@@ -28,3 +28,6 @@
 # Ignore jetty and its contents
 jetty/**
 jetty/**/data/**
+
+# ignore cache
+/vendor/cache

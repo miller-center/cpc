@@ -32,4 +32,7 @@ CpcBlacklight::Application.configure do
 
   # log full responses from Solr index (at log level 'debug', which is on in development)
   # ::BLACKLIGHT_VERBOSE_LOGGING=true
+
+ # suppress deprecation warnings
+ ActiveSupport::Deprecation.silenced = true
 end
